@@ -5,13 +5,14 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { FolderComponent } from './folder/folder.component';
-import { DataAPIComponent } from './data-api/data-api.component';
+import { FileComponent } from './file/file.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FolderComponent,
-    DataAPIComponent
+    FileComponent,
   ],
   imports: [
     BrowserModule,

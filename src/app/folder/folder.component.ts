@@ -5,13 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './folder.component.html',
   styleUrls: ['./folder.component.css']
 })
-export class FolderComponent implements OnInit {
+export class FolderComponent {
 
-  name : string;
+  _name : string;
+  _taille : number;
 
-  constructor(nom:string) { }
+  constructor() { }
 
-  ngOnInit() {
-  }
+
 
 }
