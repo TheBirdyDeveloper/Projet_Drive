@@ -1,4 +1,11 @@
 <p>
-  {{_name}}
+  {{name}}
 </p>
 
+<input [(ngModel)]="newName" type=text placeholder="Nouveau fichier">
+
+<button (click)="addFile(newName)" type="button"> Ajouter </button>
+
+<input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
+
+<button (click)="addFolder(newNameFolder)" type="button"> Ajouter </button>
