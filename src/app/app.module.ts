@@ -4,22 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { FolderComponent } from './folder/folder.component';
-import { FileComponent } from './file/file.component';
+import { FolderComponent } from './components/folder/folder.component';
+import {dataAPI} from "./services/dataAPI";
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     FolderComponent,
-    FileComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [dataAPI],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
