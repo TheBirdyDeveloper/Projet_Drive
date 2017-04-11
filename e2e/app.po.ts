@@ -6,6 +6,6 @@ export class ProjetDrivePage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('appMain-root h1')).getText();
   }
 }

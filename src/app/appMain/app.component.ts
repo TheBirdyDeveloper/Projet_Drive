@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Folder} from "../Model/Folder";
+import {Folder} from "../model/Folder";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import {Folder} from "../Model/Folder";
 })
 
 export class AppComponent {
-  title = 'app works!';
+  title = 'appMain works!';
   folder = new Folder("root");
 
 }

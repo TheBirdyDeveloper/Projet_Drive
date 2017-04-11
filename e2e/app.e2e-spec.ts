@@ -7,8 +7,8 @@ describe('projet-drive App', () => {
     page = new ProjetDrivePage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying appMain works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('appMain works!');
   });
 });
