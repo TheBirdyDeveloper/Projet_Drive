@@ -12,7 +12,6 @@ export class Folder implements IFolder{
     this.children = new Array<IFolder>();
   }
 
-
   getName(){return this.name;}
 
   getChildren(){return this.children;}
