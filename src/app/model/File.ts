@@ -6,7 +6,7 @@ import {IFolder} from "./IFolder";
 export class File implements IFolder{
   name : string;
 
-  constructor(name : string) {
+  constructor(name: string) {
     this.name = name;
   }
 

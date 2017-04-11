@@ -9,3 +9,13 @@
 <input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
 
 <button (click)="addFolder(newNameFolder)" type="button"> Ajouter </button>
+
+
+
+
+<ul>
+  <li *ngFor="let current of folder.children">
+    {{current.name}}
+    <span *ngIf="current.isFolder()"></span>
+  </li>
+</ul>

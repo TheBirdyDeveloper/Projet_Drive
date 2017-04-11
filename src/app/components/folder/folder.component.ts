@@ -20,7 +20,7 @@ export class FolderComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.folder.children = new Array<IFolder>();
+    this.folder.children = [];
   }
 
   addFile(child: string){

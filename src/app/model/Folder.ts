@@ -9,7 +9,7 @@ export class Folder implements IFolder{
 
   constructor(name : string) {
     this.name = name;
-    this.children = new Array<IFolder>();
+    this.children = [];
   }
 
   getName(){return this.name;}
