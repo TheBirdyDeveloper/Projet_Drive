@@ -11,12 +11,20 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class dataAPI {
-  private _dataUrl: string = "NOTRE SERVEUR";
+  private _dataUrl: string = "./assets/test.json";
+  private pokeUrl = 'http://pokeapi.co/api/v2/pokedex/1/';
 
   constructor(private _http: Http) {}
 
-  private getBasicData(): Observable<Response>{
-    return this._http.get(this._dataUrl).map(this.extractData).catch(this.handleError);
+  public getBasicData(): Observable<any[]>{
+      return this._http.get(this._dataUrl)
+        .map((res:Response) => res.json());
+
+  }
+
+  public getPokemon(): Observable<any[]>{
+    return this._http.get(this.pokeUrl)
+      .map((res:Response) => res.json());
   }
 
   private handleError (error: Response | any) {

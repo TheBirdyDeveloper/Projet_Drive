@@ -4,9 +4,10 @@ import {IFolder} from "./IFolder";
  */
 
 export class File implements IFolder{
-  name : string;
+  type ="file";
+  children = null;
 
-  constructor(name: string) {
+  constructor(public name: string) {
     this.name = name;
   }
 
@@ -14,5 +15,3 @@ export class File implements IFolder{
   isFolder(){return false;}
 
 }
-
-

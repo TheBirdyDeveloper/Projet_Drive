@@ -3,6 +3,8 @@
  */
 export interface IFolder {
   name : string;
+  type : string;
+  children : IFolder[];
 
   getName():string;
   isFolder():boolean;
