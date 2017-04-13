@@ -13,12 +13,14 @@
 
 
 
-<!--<ul>-->
-  <!--<li *ngFor="let current of folder.children">-->
-    <!--{{current.name}}-->
-    <!--<span *ngIf="current.isFolder()"></span>-->
-  <!--</li>-->
-<!--</ul>-->
+<ul>
+  <li *ngFor="let current of folder.children">
+    {{current.name}}
+    <span *ngIf="current.isFolder()">
+      <app-folder [folder]= "current"></app-folder>
+    </span>
+  </li>
+</ul>
 
 <!--<tr *ngFor="let current of folder.children">-->
   <!--<button (click)="affiche()" type="button"> {{current.name}} </button>-->

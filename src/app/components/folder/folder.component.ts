@@ -1,8 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {IFolder} from "../../model/IFolder";
 import {File} from "../../model/File";
 import {Folder} from "../../model/Folder";
-import { RouterModule, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-folder',
@@ -15,6 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 export class FolderComponent implements OnInit {
 
   @Input() folder:Folder;
+
 
 
   constructor() {
@@ -43,8 +42,5 @@ export class FolderComponent implements OnInit {
     }
   }
 
-  affiche(){
-      console.log("YES");
-  }
 
 }

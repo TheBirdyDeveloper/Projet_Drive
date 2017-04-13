@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import {Folder} from "../model/Folder";
 import {File} from "../model/File";
 import {dataAPI} from "../services/dataAPI";
-import {Http, Response} from '@angular/http';
-import {IFolder} from "../model/IFolder";
 
 
 @Component({
@@ -14,9 +12,9 @@ import {IFolder} from "../model/IFolder";
 })
 
 export class AppComponent {
-  title = 'appMain works!';
   folder = new Folder("root");
   //myApi : dataAPI;
+
 
   constructor(private myApi : dataAPI){
     this.myApi.getBasicData().subscribe(
