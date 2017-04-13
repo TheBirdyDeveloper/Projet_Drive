@@ -8,6 +8,16 @@
           "name": "file2",
           "type": "file",
           "children": null
+        },
+        {
+          "name": "file3",
+          "type": "file",
+          "children": null
+        },
+        {
+          "name": "file4",
+          "type": "file",
+          "children": null
         }
       ]
     },

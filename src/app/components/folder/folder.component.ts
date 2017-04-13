@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {File} from "../../model/File";
 import {Folder} from "../../model/Folder";
+import {IFolder} from "../../model/IFolder";
 
 @Component({
   selector: 'app-folder',
@@ -10,18 +11,14 @@ import {Folder} from "../../model/Folder";
 
 
 
-export class FolderComponent implements OnInit {
+export class FolderComponent {
 
   @Input() folder:Folder;
 
 
 
+
   constructor() {
-
-  }
-
-  ngOnInit(){
-    this.folder.children = [];
   }
 
   addFile(child: string){

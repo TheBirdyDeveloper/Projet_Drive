@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {Folder} from "../model/Folder";
-import {File} from "../model/File";
-import {dataAPI} from "../services/dataAPI";
+import {Folder} from "./model/Folder";
+import {File} from "./model/File";
+import {dataAPI} from "./services/dataAPI";
 
 
 @Component({
@@ -12,17 +12,19 @@ import {dataAPI} from "../services/dataAPI";
 })
 
 export class AppComponent {
-  folder = new Folder("root");
+  public mainFolder = new Folder("root");
+
   //myApi : dataAPI;
 
 
   constructor(private myApi : dataAPI){
     this.myApi.getBasicData().subscribe(
-      files => this.addData(files), //Bind to view
+      files => {this.addData(files)}, //Bind to view
       err => {
         // Log errors if any
         console.log(err);
       });
+
   }
 
   addData(root){
@@ -31,11 +33,13 @@ export class AppComponent {
         // console.log(typeFile.name)
         //var result=JSON.parse(typeFile);
         //console.log(result);
-        let newFile = new File(typeFile.name);
+        this.mainFolder.children.push(new File(typeFile.name));
       }
       else if (typeFile.type == "folder"){
         // console.log(typeFile.name)
-        this.showChildren(typeFile.children);
+        this.mainFolder.children.push(new Folder(typeFile.name));
+        this.addChildren(typeFile.children, this.mainFolder.getLastChildren());
+
       }
       else {
         console.error("type non reconnu")
@@ -43,19 +47,23 @@ export class AppComponent {
     }
   }
 
-  showChildren(children){
+  addChildren(children, currentFolder){
     for(let typeFile of children){
       if(typeFile.type == "file"){
-        // console.log(typeFile.name)
+        currentFolder.children.push(new File(typeFile.name));
+        currentFolder.children = currentFolder.children.slice();
       }
       else if (typeFile.type == "folder"){
         // console.log(typeFile.name)
-        this.showChildren(typeFile.children);
+        var newFolder = new Folder(typeFile.name);
+        currentFolder.children.push(new Folder(typeFile.name));
+        this.addChildren(typeFile.children, currentFolder.getLastChildren());
       }
       else {
         console.error("type non reconnu")
       }
     }
+    //console.log(currentFolder.children.length);
   }
 
 }
