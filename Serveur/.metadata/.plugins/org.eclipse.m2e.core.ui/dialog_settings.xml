@@ -44,6 +44,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\mehidine\Documents\Projet_Drive\Serveur"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -56,12 +57,14 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="com.esir.rest.projet.drive.test"/>
 			<item value="com.esir.rest.projet.drive"/>
 		</list>
 		<list key="groupId">
 			<item value="com.esir.rest"/>
 		</list>
 		<list key="artifactId">
+			<item value="projet.drive.test"/>
 			<item value="projet.drive"/>
 		</list>
 		<list key="projectNameTemplate">
