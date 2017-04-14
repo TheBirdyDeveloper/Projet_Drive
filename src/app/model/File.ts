@@ -6,6 +6,7 @@ import {IFolder} from "./IFolder";
 export class File implements IFolder{
   type ="file";
   children = null;
+  rightClick = false;
 
   constructor(public name: string) {
     this.name = name;
@@ -13,5 +14,7 @@ export class File implements IFolder{
 
   getName(){return this.name;}
   isFolder(){return false;}
+  onRightClick()
+{this.rightClick= !this.rightClick;}
 
 }

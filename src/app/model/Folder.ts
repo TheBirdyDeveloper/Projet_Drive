@@ -9,6 +9,7 @@ export class Folder implements IFolder{
   type = "folder";
   children : IFolder[];
   expanded = false;
+  rightClick= false;
 
   constructor(name : string) {
     this.name = name;
@@ -36,4 +37,6 @@ export class Folder implements IFolder{
     this.children.push(new Folder(child));
     this.children = this.children.slice();
   }
+
+  onRightClick() {this.rightClick= !this.rightClick;}
 }

@@ -3,7 +3,6 @@
  */
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
-import {Headers, RequestOptions} from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -21,11 +20,10 @@ export class dataAPI {
   public getBasicData(): Observable<any[]>{
       return this._http.get(this._dataUrl)
         .map((res:Response) => res.json());
-
   }
 
-  public getData(mainfolder){
-    this.mainFolder = mainfolder;
+  public getData(mainFolder){
+    this.mainFolder = mainFolder;
 
   this.getBasicData().subscribe(
   files => {this.addData(files)}, //Bind to view
@@ -74,6 +72,7 @@ err => {
     }
   }
 
+  //Pas focément utile
   addChildren(children, currentFolder){
     for(let typeFile of children){
       if(typeFile.type == "file"){

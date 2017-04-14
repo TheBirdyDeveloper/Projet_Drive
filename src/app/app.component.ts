@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {Folder} from "./model/Folder";
-import {File} from "./model/File";
 import {dataAPI} from "./services/dataAPI";
 
 
@@ -16,7 +15,6 @@ export class AppComponent {
 
   constructor(private myApi : dataAPI){
     this.myApi.getData(this.mainFolder);
-
   }
 
 }

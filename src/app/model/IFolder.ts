@@ -5,8 +5,11 @@ export interface IFolder {
   name : string;
   type : string;
   children : IFolder[];
+  rightClick : boolean;
 
   getName():string;
   isFolder():boolean;
+
+  onRightClick():void;
 
 }
