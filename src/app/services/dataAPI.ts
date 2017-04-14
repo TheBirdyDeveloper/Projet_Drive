@@ -52,7 +52,6 @@ err => {
 <<<<<<< HEAD
 =======
   */
->>>>>>> origin/master
 
   addData(children, currentFolder){
     for(let typeFile of children){

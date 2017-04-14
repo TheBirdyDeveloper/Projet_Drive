@@ -4,30 +4,23 @@
 <ul>
 
   <li *ngFor="let current of folder.children">
-
     <span *ngIf="current.isFolder()">
-  <div class="folder" (dblclick)="current.toggle()" (contextmenu)="folder.onRightClick($event)">{{ current.name }}</div>
+      <div class="folder" (dblclick)="current.toggle()" (contextmenu)="current.onRightClick($event)">{{ current.name }}
+      </div>
 
-      <div *ngIf="folder.rightClick">
+      <div *ngIf="current.rightClick">
+        <input [(ngModel)]="newName" type=text placeholder="Nouveau fichier">
+        <button (click)="current.addFile(newName)" type="button"> Ajouter</button>
+        <input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
+        <button (click)="current.addFolder(newNameFolder)" type="button"> Ajouter</button>
+      </div>
 
-
-<input [(ngModel)]="newName" type=text placeholder="Nouveau fichier">
-
-<button (click)="folder.addFile(newName)" type="button"> Ajouter</button>
-
-<input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
-
-<button (click)="folder.addFolder(newNameFolder)" type="button"> Ajouter</button>
-
-</div>
-
-    <div *ngIf="current.expanded">
-      <app-folder [folder]="current"></app-folder>
-    </div>
+      <div *ngIf="current.expanded">
+        <app-folder [folder]="current"></app-folder>
+      </div>
     </span>
 
     <span *ngIf="!current.isFolder()">
-
        <div class="file-icon">{{ current.name }}</div>
     </span>
   </li>
