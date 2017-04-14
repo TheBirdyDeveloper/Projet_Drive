@@ -1,6 +1,7 @@
 <!--<div class="contextMenu" (contextmenu)="folder.onRightClick($event)">-->
 <!--<div *ngIf="folder.rightClick">-->
 
+
 <input [(ngModel)]="newName" type=text placeholder="Nouveau fichier">
 
 <button (click)="folder.addFile(newName)" type="button"> Ajouter</button>
@@ -22,6 +23,7 @@
 <!--<button (dblclick)="folder.addFolder(newNameFolder)" type="button"> Ajouter</button>-->
 
 <ul>
+
   <li *ngFor="let current of folder.children">
 
     <span *ngIf="current.isFolder()">

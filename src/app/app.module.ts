@@ -18,7 +18,7 @@ import { RouterModule, Routes } from '@angular/router';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [dataAPI],
   bootstrap: [AppComponent]

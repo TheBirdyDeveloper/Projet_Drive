@@ -55,13 +55,9 @@ err => {
   addData(root){
     for(let typeFile of root.data){
       if(typeFile.type == "file"){
-        // console.log(typeFile.name)
-        //var result=JSON.parse(typeFile);
-        //console.log(result);
         this.mainFolder.addFile(typeFile.name);
       }
       else if (typeFile.type == "folder"){
-        // console.log(typeFile.name)
         this.mainFolder.addFolder(typeFile.name);
         this.addChildren(typeFile.children, this.mainFolder.getLastChildren());
 
@@ -80,7 +76,6 @@ err => {
         currentFolder.children = currentFolder.children.slice();
       }
       else if (typeFile.type == "folder"){
-        // console.log(typeFile.name)
         currentFolder.addFolder(typeFile.name);
         this.addChildren(typeFile.children, currentFolder.getLastChildren());
       }
@@ -88,7 +83,6 @@ err => {
         console.error("type non reconnu")
       }
     }
-    //console.log(currentFolder.children.length);
   }
 
   // private newFolder(chemin : string, name : string): Observable<any> {
