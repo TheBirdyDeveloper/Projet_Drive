@@ -12,10 +12,11 @@ import {Folder} from "../model/Folder";
 @Injectable()
 export class dataAPI {
   private _dataUrl: string = "./assets/test.json";
-  public mainFolder : Folder
+  public mainFolder : Folder;
 
   constructor(private _http: Http) {
   }
+
 
   public getBasicData(): Observable<any[]>{
       return this._http.get(this._dataUrl)
@@ -33,7 +34,7 @@ err => {
 });
 
 }
-
+/*
   private handleError (error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
@@ -46,6 +47,7 @@ err => {
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
+  */
 
   addData(children, currentFolder){
     for(let typeFile of children){
