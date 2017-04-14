@@ -17,10 +17,12 @@ export class dataAPI {
   constructor(private _http: Http) {
   }
 
+
   public getBasicData(): Observable<any[]>{
       return this._http.get(this._dataUrl)
         .map((res:Response) => res.json());
   }
+
 
   public getData(mainFolder){
     this.mainFolder = mainFolder;
@@ -32,8 +34,9 @@ err => {
   console.log(err);
 });
 
-}
 
+}
+/*
   private handleError (error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
@@ -46,6 +49,10 @@ err => {
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
+<<<<<<< HEAD
+=======
+  */
+>>>>>>> origin/master
 
   addData(children, currentFolder){
     for(let typeFile of children){

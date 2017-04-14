@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {File} from "../../model/File";
 import {Folder} from "../../model/Folder";
+import {AFolder} from "../../model/AFolder";
 import {dataAPI} from "../../services/dataAPI";
 
 @Component({
