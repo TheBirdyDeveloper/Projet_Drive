@@ -1,17 +1,6 @@
-<!--<div class="contextMenu" (contextmenu)="folder.onRightClick($event)">-->
-<!--<div *ngIf="folder.rightClick">-->
 
 
-<input [(ngModel)]="newName" type=text placeholder="Nouveau fichier">
 
-<button (click)="folder.addFile(newName)" type="button"> Ajouter</button>
-
-<input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
-
-<button (click)="folder.addFolder(newNameFolder)" type="button"> Ajouter</button>
-
-<!--</div>-->
-<!--</div>-->
 
 <!--<span *ngIf="folder.children.length>0">-->
 <!--<span *ngIf="folder.children[0].children != null">-->
@@ -27,8 +16,21 @@
   <li *ngFor="let current of folder.children">
 
     <span *ngIf="current.isFolder()">
+  <div class="folder" (dblclick)="current.toggle()" (contextmenu)="folder.onRightClick($event)">{{ current.name }}</div>
 
-      <div class="folder" (dblclick)="current.toggle()">{{ current.name }}</div>
+      <div *ngIf="folder.rightClick">
+
+
+<input [(ngModel)]="newName" type=text placeholder="Nouveau fichier">
+
+<button (click)="folder.addFile(newName)" type="button"> Ajouter</button>
+
+<input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
+
+<button (click)="folder.addFolder(newNameFolder)" type="button"> Ajouter</button>
+
+</div>
+
     <div *ngIf="current.expanded">
       <app-folder [folder]="current"></app-folder>
     </div>
