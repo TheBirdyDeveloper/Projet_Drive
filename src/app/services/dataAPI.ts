@@ -23,6 +23,7 @@ export class dataAPI {
         .map((res:Response) => res.json());
   }
 
+
   public getData(mainFolder){
     this.mainFolder = mainFolder;
 
