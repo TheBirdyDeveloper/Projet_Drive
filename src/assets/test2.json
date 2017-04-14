@@ -1,0 +1,23 @@
+[
+  {
+    "name": "file2",
+    "type": "file",
+    "children": null
+  },
+  {
+    "name": "file3",
+    "type": "file",
+    "children": null
+  },
+  {
+    "name": "folder2",
+    "type": "folder",
+    "children": [
+      {
+        "name": "file2",
+        "type": "file",
+        "children": null
+      }
+    ]
+  }
+    ]

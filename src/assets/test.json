@@ -1,41 +1,40 @@
-{
-  "data": [
-    {
-      "name": "folder1",
-      "type": "folder",
-      "children": [
-        {
-          "name": "file2",
-          "type": "file",
-          "children": null
-        },
-        {
-          "name": "file3",
-          "type": "file",
-          "children": null
-        },
-        {
-          "name": "folder2",
-          "type": "folder",
-          "children": [
-            {
-              "name": "file2",
-              "type": "file",
-              "children": null
-            }
-          ]
-        },
-        {
-          "name": "file4",
-          "type": "file",
-          "children": null
-        }
-      ]
-    },
-    {
-      "name": "file1",
-      "type": "file",
-      "children": null
-    }
-  ]
-}
+[
+  {
+    "name": "folder1",
+    "type": "folder",
+    "children": [
+      {
+        "name": "file2",
+        "type": "file",
+        "children": null
+      },
+      {
+        "name": "file3",
+        "type": "file",
+        "children": null
+      },
+      {
+        "name": "folder2",
+        "type": "folder",
+        "children": [
+          {
+            "name": "file2",
+            "type": "file",
+            "children": null
+          }
+        ]
+      },
+      {
+        "name": "file4",
+        "type": "file",
+        "children": null
+      }
+    ]
+  },
+  {
+    "name": "file1",
+    "type": "file",
+    "children": null
+  }
+
+]

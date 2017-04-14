@@ -2,7 +2,6 @@ import {Component, OnInit, Input} from '@angular/core';
 import {File} from "../../model/File";
 import {Folder} from "../../model/Folder";
 import {IFolder} from "../../model/IFolder";
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-folder',
@@ -16,8 +15,13 @@ export class FolderComponent {
 
   @Input() folder:Folder;
 
-  constructor() {
+
+  constructor(private myApi : dataAPI) {
   }
 
+
+  getData(){
+  this.myApi.getData(this.folder);
+}
 
 }

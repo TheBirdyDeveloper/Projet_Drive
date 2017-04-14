@@ -12,10 +12,11 @@ import {Folder} from "../model/Folder";
 @Injectable()
 export class dataAPI {
   private _dataUrl: string = "./assets/test.json";
-  public mainFolder : Folder
+  public mainFolder : Folder;
 
   constructor(private _http: Http) {
   }
+
 
   public getBasicData(): Observable<any[]>{
       return this._http.get(this._dataUrl)
@@ -26,7 +27,7 @@ export class dataAPI {
     this.mainFolder = mainFolder;
 
   this.getBasicData().subscribe(
-  files => {this.addData(files)}, //Bind to view
+  files => {this.addData(files, mainFolder)}, //Bind to view
 err => {
   // Log errors if any
   console.log(err);
@@ -55,9 +56,13 @@ err => {
   addData(root){
     for(let typeFile of root.data){
       if(typeFile.type == "file"){
+        // console.log(typeFile.name)
+        //var result=JSON.parse(typeFile);
+        //console.log(result);
         this.mainFolder.addFile(typeFile.name);
       }
       else if (typeFile.type == "folder"){
+        // console.log(typeFile.name)
         this.mainFolder.addFolder(typeFile.name);
         this.addChildren(typeFile.children, this.mainFolder.getLastChildren());
 
@@ -76,6 +81,7 @@ err => {
         currentFolder.children = currentFolder.children.slice();
       }
       else if (typeFile.type == "folder"){
+        // console.log(typeFile.name)
         currentFolder.addFolder(typeFile.name);
         this.addChildren(typeFile.children, currentFolder.getLastChildren());
       }
@@ -83,6 +89,7 @@ err => {
         console.error("type non reconnu")
       }
     }
+    //console.log(currentFolder.children.length);
   }
 
   // private newFolder(chemin : string, name : string): Observable<any> {
