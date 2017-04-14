@@ -1,42 +1,36 @@
 /**
  * Created by Clément on 11/04/2017.
  */
-import {IFolder} from "./IFolder";
+import {AFolder} from "./AFolder";
 import {File} from "./File";
 
-export class Folder implements IFolder{
-  name : string;
-  type = "folder";
-  children : IFolder[];
+export class Folder extends AFolder{
   expanded = false;
-  rightClick= false;
 
-  constructor(name : string) {
-    this.name = name;
+
+  constructor(name, pathLastFolder) {
+    super(name, pathLastFolder);
     this.children = [];
+    this.type = "folder";
   }
 
   toggle(){
     this.expanded = !this.expanded;
   }
 
-  getName(){return this.name;}
-
   getChildren(){return this.children;}
 
   getLastChildren(){return this.children[this.children.length-1];}
 
-  isFolder(){return true;}
-
   addFile(child: string){
-    this.children.push(new File(child));
+    this.children.push(new File(child, this.path));
     this.children = this.children.slice();
   }
 
   addFolder(child:string){
-    this.children.push(new Folder(child));
+    this.children.push(new Folder(child, this.path));
     this.children = this.children.slice();
   }
 
-  onRightClick() {this.rightClick= !this.rightClick;}
+
 }

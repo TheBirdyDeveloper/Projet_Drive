@@ -1,20 +1,15 @@
-import {IFolder} from "./IFolder";
+import {AFolder} from "./AFolder";
 /**
  * Created by Clément on 11/04/2017.
  */
 
-export class File implements IFolder{
-  type ="file";
-  children = null;
-  rightClick = false;
+export class File extends AFolder{
 
-  constructor(public name: string) {
-    this.name = name;
+
+  constructor(name, pathLastFolder) {
+    super(name, pathLastFolder);
+    this.children = null;
+    this.type = "file";
   }
-
-  getName(){return this.name;}
-  isFolder(){return false;}
-  onRightClick()
-{this.rightClick= !this.rightClick;}
 
 }

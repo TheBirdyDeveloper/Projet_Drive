@@ -26,7 +26,7 @@ export class dataAPI {
     this.mainFolder = mainFolder;
 
   this.getBasicData().subscribe(
-  files => {this.addData(files)}, //Bind to view
+  files => {this.addData(files, mainFolder)}, //Bind to view
 err => {
   // Log errors if any
   console.log(err);
@@ -47,60 +47,19 @@ err => {
     return Observable.throw(errMsg);
   }
 
-  private extractData(res : Response) {
-    let body = res.json();
-    return {data : body.data, type : body.type || null} || {};
-  }
-
-  addData(root){
-    for(let typeFile of root.data){
-      if(typeFile.type == "file"){
-        // console.log(typeFile.name)
-        //var result=JSON.parse(typeFile);
-        //console.log(result);
-        this.mainFolder.addFile(typeFile.name);
-      }
-      else if (typeFile.type == "folder"){
-        // console.log(typeFile.name)
-        this.mainFolder.addFolder(typeFile.name);
-        this.addChildren(typeFile.children, this.mainFolder.getLastChildren());
-
-      }
-      else {
-        console.error("type non reconnu")
-      }
-    }
-  }
-
-  //Pas focément utile
-  addChildren(children, currentFolder){
+  addData(children, currentFolder){
     for(let typeFile of children){
       if(typeFile.type == "file"){
         currentFolder.addFile(typeFile.name);
-        currentFolder.children = currentFolder.children.slice();
       }
       else if (typeFile.type == "folder"){
-        // console.log(typeFile.name)
         currentFolder.addFolder(typeFile.name);
-        this.addChildren(typeFile.children, currentFolder.getLastChildren());
+        this.addData(typeFile.children, currentFolder.getLastChildren()); //A supprimer apres
       }
       else {
         console.error("type non reconnu")
       }
     }
-    //console.log(currentFolder.children.length);
   }
-
-  // private newFolder(chemin : string, name : string): Observable<any> {
-  //   let data = { path:chemin, name:name};
-  //   // à voir
-  //   return this._http.post(`${this._dataUrl}/new-folder`, JSON.stringify(data)).map(this.extractData).catch(this.handleError);
-  // }
-
-
-
-
-
-
 
 }
