@@ -1,7 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {File} from "../../model/File";
 import {Folder} from "../../model/Folder";
-import {IFolder} from "../../model/IFolder";
+import {dataAPI} from "../../services/dataAPI";
 
 @Component({
   selector: 'app-folder',
