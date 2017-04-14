@@ -21,23 +21,5 @@ export class FolderComponent {
   constructor() {
   }
 
-  addFile(child: string){
-    this.folder.children.push(new File(child));
-    this.folder.children = this.folder.children.slice();
-    this.showArbo();
-  }
-
-  addFolder(child:string){
-    this.folder.children.push(new Folder(child));
-    this.folder.children = this.folder.children.slice();
-    this.showArbo();
-  }
-
-  showArbo(){
-    for (let current of this.folder.children){
-      console.log(current.getName());
-    }
-  }
-
 
 }

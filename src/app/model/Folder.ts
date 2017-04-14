@@ -26,4 +26,14 @@ export class Folder implements IFolder{
   getLastChildren(){return this.children[this.children.length-1];}
 
   isFolder(){return true;}
+
+  addFile(child: string){
+    this.children.push(new File(child));
+    this.children = this.children.slice();
+  }
+
+  addFolder(child:string){
+    this.children.push(new Folder(child));
+    this.children = this.children.slice();
+  }
 }

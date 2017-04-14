@@ -2,11 +2,11 @@
 
 <input [(ngModel)]="newName" type=text placeholder="Nouveau fichier">
 
-<button (click)="addFile(newName)" type="button"> Ajouter </button>
+<button (click)="folder.addFile(newName)" type="button"> Ajouter </button>
 
 <input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
 
-<button (click)="addFolder(newNameFolder)" type="button"> Ajouter </button>
+<button (click)="folder.addFolder(newNameFolder)" type="button"> Ajouter </button>
 
 
 <!--<span *ngIf="folder.children.length>0">-->
@@ -16,11 +16,14 @@
     <!--</span>-->
   <!--</span>-->
 <!--</span>-->
+<button (dblclick)="folder.addFolder(newNameFolder)" type="button"> Ajouter </button>
 
 <ul>
   <li *ngFor="let current of folder.children">
 
     <span *ngIf="current.isFolder()">
+
+
 
       <span (click)="current.toggle()">{{ current.name }}</span>
     <div *ngIf="current.expanded">
