@@ -1,0 +1,12 @@
+.rootFolder {
+  font-family: Arial, Tahoma, sans-serif;
+  font-weight: 300;
+  display: inline-block;
+  width: 100px;
+  height: 85px;
+  background: #CCCCCC;
+  position: relative;
+  border-radius: 2px;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+}
