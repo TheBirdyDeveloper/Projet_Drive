@@ -5,7 +5,7 @@ export abstract class AFolder {
   name : string;
   type : string;
   children : AFolder[];
-  rightClick : boolean;
+  private rightClick : boolean;
   path : string[];
 
   constructor(name, pathLastFolder) {

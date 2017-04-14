@@ -3,6 +3,7 @@
  */
 import {AFolder} from "./AFolder";
 import {File} from "./File";
+//import {dataAPI} from "../services/dataAPI";
 
 export class Folder extends AFolder{
   expanded = false;
@@ -31,6 +32,7 @@ export class Folder extends AFolder{
     this.children.push(new Folder(child, this.path));
     this.children = this.children.slice();
   }
+
 
 
 }

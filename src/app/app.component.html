@@ -1,1 +1,17 @@
+<div class="rootFolder" (contextmenu)="mainFolder.onRightClick($event)">{{ mainFolder.name }}</div>
+
+<div *ngIf="mainFolder.rightClick">
+
+  <input [(ngModel)]="newName" type=text placeholder="Nouveau fichier">
+
+  <button (click)="mainFolder.addFile(newName)" type="button"> Ajouter</button>
+
+  <input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
+
+  <button (click)="mainFolder.addFolder(newNameFolder)" type="button"> Ajouter</button>
+
+</div>
+
+
 <app-folder [folder]= "mainFolder"></app-folder>
+

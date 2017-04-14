@@ -12,6 +12,7 @@ import {Folder} from "../model/Folder";
 @Injectable()
 export class dataAPI {
   private _dataUrl: string = "./assets/test.json";
+  // private _dataUrl2: string = "./assets/test2.json";
   public mainFolder : Folder;
 
   constructor(private _http: Http) {
@@ -23,17 +24,24 @@ export class dataAPI {
         .map((res:Response) => res.json());
   }
 
+  // public getDataTest(): Observable<any[]>{
+  //   return this._http.get(this._dataUrl2)
+  //     .map((res:Response) => res.json());
+  // }
+
 
   public getData(mainFolder){
+    console.log(mainFolder.name);
     this.mainFolder = mainFolder;
+      this.getBasicData().subscribe(
+        files => {
+          this.addData(files, mainFolder)
+        }, //Bind to view
+        err => {
+          // Log errors if any
+          console.log(err);
 
-  this.getBasicData().subscribe(
-  files => {this.addData(files, mainFolder)}, //Bind to view
-err => {
-  // Log errors if any
-  console.log(err);
-});
-
+        });
 
 }
 /*

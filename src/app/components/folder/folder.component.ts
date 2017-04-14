@@ -20,9 +20,8 @@ export class FolderComponent {
   constructor(private myApi : dataAPI) {
   }
 
-
   getData(){
-  this.myApi.getData(this.folder);
+  //this.myApi.getData(this.folder);
 }
 
 }
