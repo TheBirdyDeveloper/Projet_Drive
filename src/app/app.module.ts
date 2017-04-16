@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { routing } from './app.routes';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import {AuthGuard} from "./services/auth.guard";
+import { RegisterComponent } from './components/register/register.component';
 
 
 
@@ -19,6 +20,7 @@ import {AuthGuard} from "./services/auth.guard";
     FolderComponent,
     LoginComponent,
     MainPageComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
