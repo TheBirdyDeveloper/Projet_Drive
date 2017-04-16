@@ -2,6 +2,16 @@
   {{ mainFolder.name | uppercase}}
 </div>
 
+<div *ngIf="mainFolder.rightClick">
+  <input [(ngModel)]="newNameFile" type=text placeholder="Nouveau fichier">
+  <button (click)="mainFolder.addFile(newNameFile)" type="button"> Ajouter</button>
+  <input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
+  <button (click)="mainFolder.addFolder(newNameFolder)" type="button"> Ajouter</button>
+
+  <button (click)="mainFolder.stick(mainFolder.path)" type="button"> Coller</button>
+
+</div>
+
 <app-folder [folder]= "mainFolder"></app-folder>
 
 

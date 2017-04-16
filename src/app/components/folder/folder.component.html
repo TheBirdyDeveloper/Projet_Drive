@@ -1,15 +1,21 @@
 <ul>
 
   <li *ngFor="let current of folder.children">
+
+
     <span *ngIf="current.isFolder()">
       <div class="folder" (dblclick)="current.toggle()" (contextmenu)="current.onRightClick($event)">{{ current.name }}
       </div>
 
       <div *ngIf="current.rightClick">
-        <input [(ngModel)]="newName" type=text placeholder="Nouveau fichier">
-        <button (click)="current.addFile(newName)" type="button"> Ajouter</button>
+        <input [(ngModel)]="newNameFile" type=text placeholder="Nouveau fichier">
+        <button (click)="current.addFile(newNameFile)" type="button"> Ajouter</button>
         <input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
         <button (click)="current.addFolder(newNameFolder)" type="button"> Ajouter</button>
+    <input [(ngModel)]="newName" type=text placeholder="Nouveau nom">
+    <button (click)="current.changeName(newName)" type="button"> Changer</button>
+    <!--<button (click)="current.copy(current.type)" type="button"> Copier</button>  Copier coller un dossier ne fonctionne pas encore-->
+        <button (click)="current.stick(current.path)" type="button"> Coller</button>
       </div>
 
       <div *ngIf="current.expanded">
@@ -18,7 +24,12 @@
     </span>
 
     <span *ngIf="!current.isFolder()">
-       <div class="file-icon">{{ current.name }}</div>
+       <div class="file-icon" (contextmenu)="current.onRightClick($event)">{{ current.name }}</div>
+      <div *ngIf="current.rightClick">
+    <input [(ngModel)]="newName" type=text placeholder="Nouveau nom">
+    <button (click)="current.changeName(newName)" type="button"> Changer</button>
+        <button (click)="current.copy(current.type)" type="button"> Copier</button>
+    </div>
     </span>
   </li>
 </ul>

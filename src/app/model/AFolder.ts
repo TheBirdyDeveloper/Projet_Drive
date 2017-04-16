@@ -8,11 +8,23 @@ export abstract class AFolder {
   private rightClick : boolean;
   path : string[];
 
+  public static currentCopy : AFolder =null;
+
   constructor(name, pathLastFolder) {
     this.name = name;
     this.path = pathLastFolder;
     this.path.push(name)
     this.rightClick = false;
+
+  }
+
+  changeName(name){
+    this.name=name;
+  }
+
+  copy(type:string){
+    AFolder.currentCopy = this;
+    AFolder.currentCopy.type = type;
   }
 
   isFolder(){return this.type=="folder";}

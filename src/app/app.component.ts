@@ -12,10 +12,10 @@ import {dataAPI} from "./services/dataAPI";
 })
 
 export class AppComponent {
-  public mainFolder = new Folder("root",[]);
+  //public mainFolder = new Folder("root",[]);
 
   constructor(private myApi : dataAPI){
-    this.myApi.getData(this.mainFolder);
+    //this.myApi.getData(this.mainFolder);
   }
 
 }
