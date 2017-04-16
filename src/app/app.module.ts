@@ -6,21 +6,28 @@ import { AppComponent } from './app.component';
 import { FolderComponent } from './components/folder/folder.component';
 import {dataAPI} from "./services/dataAPI";
 import { RouterModule, Routes } from '@angular/router';
-//import { TreeViewComponent } from './components/tree-view/tree-view.component';
+import { LoginComponent } from './components/login/login.component';
+import { routing } from './app.routes';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import {AuthGuard} from "./services/auth.guard";
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FolderComponent
+    FolderComponent,
+    LoginComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule,
-  ],
-  providers: [dataAPI],
+    routing
+    ],
+  providers: [dataAPI, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

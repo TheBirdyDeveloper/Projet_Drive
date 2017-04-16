@@ -1,0 +1,37 @@
+<div class="bg-primary text-white" (contextmenu)="mainFolder.onRightClick($event)">
+  {{ mainFolder.name | uppercase}}
+</div>
+
+<app-folder [folder]= "mainFolder"></app-folder>
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+
+  <!--Définition de la navbar du haut-->
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#" style="padding: 0px">
+        <img src="./assets/cochon.png" style="height:100%;display:inline-block;">UniCloud
+      </a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a [routerLink]="['/files']">Fichiers</a></li>
+        <li><a [routerLink]="['/Options']">Options</a></li>
+        <li><a [routerLink]="['/']">Log out</a></li>
+
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+
+<div id='content-main' class='container' style="padding-top: 80px">
+</div>
