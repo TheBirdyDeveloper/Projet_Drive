@@ -21,6 +21,7 @@ export class Folder extends AFolder {
       return;
     }
 
+
     if (AFolder.currentCopy.type == "folder") {
       this.addFolder(AFolder.currentCopy.name, path);
       this.copyChildren(<Folder>this.getLastChildren(), AFolder.currentCopy);
