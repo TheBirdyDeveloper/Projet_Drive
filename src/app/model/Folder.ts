@@ -5,7 +5,7 @@ import {AFolder} from "./AFolder";
 import {File} from "./File";
 //import {dataAPI} from "../services/dataAPI";
 
-export class Folder extends AFolder{
+export class Folder extends AFolder {
   expanded = false;
 
 
@@ -15,44 +15,57 @@ export class Folder extends AFolder{
     this.type = "folder";
   }
 
-  stick(path:string[]){
-    if (AFolder.currentCopy.type == "folder"){
-      this.addCopyFolder(AFolder.currentCopy.name, path);
-      this.getLastChildren().children = AFolder.currentCopy.children;
-      //this.getLastChildren().children.slice();
+  paste(path: string[]) {
+    if (AFolder.currentCopy == null){
+      console.error("Erreur : Coller sans avoir Copier");
+      return;
     }
-    else if (AFolder.currentCopy.type == "file"){
-      this.addCopyFile(AFolder.currentCopy.name, path);
+
+    if (AFolder.currentCopy.type == "folder") {
+      this.addFolder(AFolder.currentCopy.name, path);
+      this.copyChildren(<Folder>this.getLastChildren(), AFolder.currentCopy);
     }
-    else{console.error("erreur de type pour coller");
+
+    else if (AFolder.currentCopy.type == "file") {
+      this.addFile(AFolder.currentCopy.name, path);
+    }
+    else {
+      console.error("erreur de type pour coller");
     }
   }
 
-  toggle(){
+  toggle() {
     this.expanded = !this.expanded;
   }
 
-  getLastChildren(){return this.children[this.children.length-1];}
-
-  addFile(child: string){
-    this.children.push(new File(child, this.path));
-    this.children = this.children.slice();
+  getLastChildren() {
+    return this.children[this.children.length - 1];
   }
 
-  addFolder(child:string){
-    this.children.push(new Folder(child, this.path));
-    this.children = this.children.slice();
-  }
-
-  addCopyFolder(child:string, path:string[]){
+  addFolder(child: string, path: string[] = this.path) {
     this.children.push(new Folder(child, path));
     this.children = this.children.slice();
   }
 
-  addCopyFile(child:string, path:string[]){
+  addFile(child: string, path: string[] = this.path) {
     this.children.push(new File(child, path));
     this.children = this.children.slice();
   }
 
+  copyChildren(newFolder: Folder, father: AFolder) {
+    for (let current of father.children) {
+    if (current.type == "folder") {
+      newFolder.addFolder(current.name, father.path);
+      newFolder.copyChildren(<Folder>newFolder.getLastChildren(), current);
+    }
+
+    else if (current.type == "file") {
+      newFolder.addFile(current.name, father.path);
+    }
+    else {
+      console.error("erreur de type pour coller");
+    }
+  }
+}
 
 }

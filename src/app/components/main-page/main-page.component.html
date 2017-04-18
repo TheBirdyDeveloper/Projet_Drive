@@ -3,12 +3,15 @@
 </div>
 
 <div *ngIf="mainFolder.rightClick">
+
+  <!--Fonctions de Root-->
+
   <input [(ngModel)]="newNameFile" type=text placeholder="Nouveau fichier">
   <button (click)="mainFolder.addFile(newNameFile)" type="button"> Ajouter</button>
   <input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
   <button (click)="mainFolder.addFolder(newNameFolder)" type="button"> Ajouter</button>
 
-  <button (click)="mainFolder.stick(mainFolder.path)" type="button"> Coller</button>
+  <button (click)="mainFolder.paste(mainFolder.path)" type="button"> Coller</button>
 
 </div>
 

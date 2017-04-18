@@ -8,12 +8,12 @@ export abstract class AFolder {
   private rightClick : boolean;
   path : string[];
 
-  public static currentCopy : AFolder =null;
+  public static currentCopy : AFolder = null;
 
   constructor(name, pathLastFolder) {
     this.name = name;
     this.path = pathLastFolder;
-    this.path.push(name)
+    this.path.push(name);
     this.rightClick = false;
 
   }
@@ -25,28 +25,28 @@ export abstract class AFolder {
   copy(type:string){
     AFolder.currentCopy = this;
     AFolder.currentCopy.type = type;
+    AFolder.currentCopy.children = this.children;
   }
 
   isFolder(){return this.type=="folder";}
-
-  getName(){return this.name;}
 
   onRightClick() {
     this.rightClick= !this.rightClick;
     return false;
   }
 
-  getStringPath(){
-    var path ="";
-    for (let current of this.path){
-      if (path!="") {
-        path += "."+current;
-      }
-      else{
-        path += current;
-      }
-    }
-    return path;
-  }
+  //Pour plus tard
+  // getStringPath(){
+  //   var path ="";
+  //   for (let current of this.path){
+  //     if (path!="") {
+  //       path += "."+current;
+  //     }
+  //     else{
+  //       path += current;
+  //     }
+  //   }
+  //   return path;
+  // }
 
 }
