@@ -65,6 +65,7 @@ export class Folder extends AFolder {
       else{
         //console.log("attention emboitement d'un folder dans le même folder pour coller")
       }
+
     }
 
     else if (current.type == "file") {
