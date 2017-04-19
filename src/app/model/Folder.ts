@@ -23,6 +23,7 @@ export class Folder extends AFolder {
 
 
     if (AFolder.currentCopy.type == "folder") {
+      //console.log("ajout dossier");
       this.addFolder(AFolder.currentCopy.name, path);
       this.copyChildren(<Folder>this.getLastChildren(), AFolder.currentCopy);
     }
@@ -56,8 +57,14 @@ export class Folder extends AFolder {
   copyChildren(newFolder: Folder, father: AFolder) {
     for (let current of father.children) {
     if (current.type == "folder") {
-      newFolder.addFolder(current.name, father.path);
-      newFolder.copyChildren(<Folder>newFolder.getLastChildren(), current);
+
+      if (AFolder.currentCopy.name != current.name) {
+        newFolder.addFolder(current.name, father.path);
+        newFolder.copyChildren(<Folder>newFolder.getLastChildren(), current);
+      }
+      else{
+        //console.log("attention emboitement d'un folder dans le même folder pour coller")
+      }
     }
 
     else if (current.type == "file") {

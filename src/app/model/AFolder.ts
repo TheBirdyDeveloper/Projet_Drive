@@ -25,7 +25,8 @@ export abstract class AFolder {
   copy(type:string){
     AFolder.currentCopy = this;
     AFolder.currentCopy.type = type;
-    AFolder.currentCopy.children = this.children;
+    AFolder.currentCopy.children = this.children.slice();
+
   }
 
   isFolder(){return this.type=="folder";}
