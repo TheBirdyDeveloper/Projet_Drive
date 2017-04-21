@@ -13,13 +13,16 @@ export abstract class AFolder {
   constructor(name, pathLastFolder) {
     this.name = name;
     this.path = pathLastFolder;
+    this.path=this.path.slice();
     this.path.push(name);
     this.rightClick = false;
 
   }
 
-  changeName(name){
+  changeName(name : string){
     this.name=name;
+    this.path.pop();
+    this.path.push(name)
   }
 
   copy(type:string){
@@ -42,21 +45,22 @@ export abstract class AFolder {
 
   onRightClick() {
     this.rightClick= !this.rightClick;
+    console.log(this.name + " : " +this.getStringPath());
     return false;
   }
 
   //Pour plus tard
-  // getStringPath(){
-  //   var path ="";
-  //   for (let current of this.path){
-  //     if (path!="") {
-  //       path += "."+current;
-  //     }
-  //     else{
-  //       path += current;
-  //     }
-  //   }
-  //   return path;
-  // }
+  getStringPath(){
+    var path ="";
+    for (let current of this.path){
+      if (path!="") {
+        path += "/"+current;
+      }
+      else{
+        path += current;
+      }
+    }
+    return path;
+  }
 
 }

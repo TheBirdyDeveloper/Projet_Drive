@@ -45,11 +45,13 @@ export class Folder extends AFolder {
   }
 
   addFolder(child: string, path: string[] = this.path) {
+    path = path.slice();
     this.children.push(new Folder(child, path));
     this.children = this.children.slice();
   }
 
   addFile(child: string, path: string[] = this.path) {
+    path = path.slice();
     this.children.push(new File(child, path));
     this.children = this.children.slice();
   }
