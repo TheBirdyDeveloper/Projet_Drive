@@ -62,3 +62,9 @@
   text-align: left;
   -webkit-font-smoothing: antialiased;
 }
+
+.fonctions{
+  width: 240px;
+  height : 160px;
+  background: whitesmoke;
+}

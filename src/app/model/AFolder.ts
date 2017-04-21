@@ -25,8 +25,17 @@ export abstract class AFolder {
   copy(type:string){
     AFolder.currentCopy = this;
     AFolder.currentCopy.type = type;
-    AFolder.currentCopy.children = this.children.slice();
+    //AFolder.currentCopy.children = this.children.slice();
+  }
 
+  cut(type:string, father: AFolder){
+    AFolder.currentCopy = this;
+    AFolder.currentCopy.type = type;
+    //AFolder.currentCopy.children = this.children.slice();
+    var index = father.children.indexOf(this, 0);
+    if (index> -1){
+      father.children.splice(index, 1);
+    }
   }
 
   isFolder(){return this.type=="folder";}
