@@ -92,3 +92,13 @@
 0:0:0:0:0:0:0:1 - - [24/Apr/2017:14:19:38 +0200] "GET /drive-service/rest/googleDrive/OAuth?auth=m HTTP/1.1" 200 369
 0:0:0:0:0:0:0:1 - - [24/Apr/2017:14:22:00 +0200] "GET /drive-service/rest/googleDrive/OAuth?auth=m HTTP/1.1" 200 369
 127.0.0.1 - - [24/Apr/2017:14:26:45 +0200] "GET /drive-service/rest/googleDrive/Response?code=4/53Ry4TPL1Lkdaeq8vh37Q_dOrWsS_fZDmS_ft_uDx9E HTTP/1.1" 307 -
+127.0.0.1 - - [24/Apr/2017:14:49:37 +0200] "GET / HTTP/1.1" 404 1005
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:14:49:37 +0200] "GET /drive-service/ HTTP/1.1" 200 57
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:14:49:42 +0200] "GET /drive-service/rest/googleDrive/Response?code=4/IsaZMfiwV9TE7wSbLnrDv3FVCGUt_kkKU4n6oC_m230 HTTP/1.1" 307 -
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:14:49:54 +0200] "GET /drive-service/rest/googleDrive/Get?rep=root HTTP/1.1" 200 3731
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:14:50:57 +0200] "GET /drive-service/rest/googleDrive/Get?rep=0B4MbvRPQMuR8SVZsTG4yR2Z4cDg HTTP/1.1" 200 188
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:14:51:27 +0200] "GET /drive-service/rest/googleDrive/Get?rep=0B4MbvRPQMuR8SHZoUmpHWEhwdEk HTTP/1.1" 200 117
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:14:51:35 +0200] "GET /drive-service/rest/googleDrive/Get?rep=0B4MbvRPQMuR8eEF2QzZmZk1hODA HTTP/1.1" 200 591
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:14:51:46 +0200] "GET /drive-service/rest/googleDrive/Get?rep=0B1qDUfaOuJ7iVUJ4cEVXcWxGMVk HTTP/1.1" 200 100
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:14:51:54 +0200] "GET /drive-service/rest/googleDrive/Get?rep=0B1qDUfaOuJ7icDV6eUlTaTF3S28 HTTP/1.1" 200 192
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:14:52:00 +0200] "GET /drive-service/rest/googleDrive/Get?rep=0B4MbvRPQMuR8Z3JlYkQzT3h5a0E HTTP/1.1" 200 426

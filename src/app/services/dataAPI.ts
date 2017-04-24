@@ -14,7 +14,7 @@ export class dataAPI {
   private _dataUrl: string = "./assets/google.json";
   private _dataUrl2: string = "./assets/test2.json";
 
-  private serveurDrive: string = "localhost:8080/drive-service/rest/googleDrive/Get?rep=";
+  private serveurDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Get?rep=";
 
 
   public mainFolder : Folder;
