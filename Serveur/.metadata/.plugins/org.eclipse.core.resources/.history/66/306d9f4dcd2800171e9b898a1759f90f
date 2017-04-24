@@ -32,7 +32,7 @@ public class DropBox {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response dorpBoxDriveResponse(@QueryParam("code") String code ) throws URISyntaxException {
 	code_ = code;
-	java.net.URI location = new java.net.URI("http://localhost:4200/login");
+	java.net.URI location = new java.net.URI("http://localhost:4200/home");
 	return Response.temporaryRedirect(location).build();
 	}
 	

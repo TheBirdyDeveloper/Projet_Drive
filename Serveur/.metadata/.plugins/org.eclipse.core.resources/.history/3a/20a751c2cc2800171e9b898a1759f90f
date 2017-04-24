@@ -37,7 +37,7 @@ public class MyDrive {
 	public Response googleDriveResponse(@QueryParam("code") String code) throws URISyntaxException {
 	code_ = code;
 	client.getToken(code_);  
-	java.net.URI location = new java.net.URI("http://localhost:4200/login");
+	java.net.URI location = new java.net.URI("http://localhost:4200/home");
 	//ListFileTranslator liste = client.getFiles("root");
 	return Response.temporaryRedirect(location).build();
 	}
