@@ -1,10 +1,13 @@
 package com.unidrive.drive_service;
 
+import java.net.URISyntaxException;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 
 @Path("/DropBox")
@@ -27,10 +30,10 @@ public class DropBox {
 	@Path("/Response")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public ListFileTranslator dorpBoxDriveResponse(@QueryParam("code") String code ) {
+	public Response dorpBoxDriveResponse(@QueryParam("code") String code ) throws URISyntaxException {
 	code_ = code;
-	client.getToken(code_);
-	return client.getFiles("");
+	java.net.URI location = new java.net.URI("http://localhost:4200/home");
+	return Response.temporaryRedirect(location).build();
 	}
 	
 	@Path("/Get")
