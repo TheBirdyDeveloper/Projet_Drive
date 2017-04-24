@@ -12,12 +12,12 @@ import {Folder} from "../model/Folder";
 @Injectable()
 export class dataAPI {
   private _dataUrl: string = "./assets/google.json";
-  private _dataUrl2: string = "./assets/test.json2";
+  private _dataUrl2: string = "./assets/test2.json";
+  private serveur: string = "localhost:8080/drive-service/rest/";
+
   public mainFolder : Folder;
 
-  constructor(private _http: Http) {
-  }
-
+  constructor(private _http: Http) {}
 
   public getBasicData(): Observable<any[]>{
       return this._http.get(this._dataUrl)
@@ -45,7 +45,7 @@ export class dataAPI {
     let options = new RequestOptions({ headers: headers });
     var post = JSON.stringify({attribute: 'name'})
 
-    this._http.post(this._dataUrl2, post, options ).subscribe(
+    this._http.post(this.serveur, post, options ).subscribe(
       data => console.log("POSTE")
     );
 }

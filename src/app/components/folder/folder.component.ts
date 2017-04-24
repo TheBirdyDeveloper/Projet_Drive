@@ -19,7 +19,7 @@ export class FolderComponent {
   }
 
   post(){
-    //this.myApi.postData();
+    this.myApi.postData();
   }
 
   getData(folder){
