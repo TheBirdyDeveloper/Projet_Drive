@@ -8,6 +8,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 
 
@@ -29,12 +33,13 @@ public class MyDrive {
 	//This method is called if HTML is request
 	@Path("/Response")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public ListFileTranslator googleDriveResponse(@QueryParam("code") String code) {
+	//@Produces(MediaType.)
+	public Response googleDriveResponse(@QueryParam("code") String code) throws URISyntaxException {
 	code_ = code;
 	client.getToken(code_);  
-	ListFileTranslator liste = client.getFiles("root");
-	return liste;
+	java.net.URI location = new java.net.URI("http://localhost:4200/home");
+	//ListFileTranslator liste = client.getFiles("root");
+	return Response.temporaryRedirect(location).build();
 	}
 	
 	@Path("/Get")
