@@ -13,21 +13,23 @@ import {Folder} from "../model/Folder";
 export class dataAPI {
   private _dataUrl: string = "./assets/google.json";
   private _dataUrl2: string = "./assets/test2.json";
-  private serveur: string = "localhost:8080/drive-service/rest/";
+
+  private serveurDrive: string = "localhost:8080/drive-service/rest/googleDrive/Get?rep=";
+
 
   public mainFolder : Folder;
 
   constructor(private _http: Http) {}
 
-  public getBasicData(): Observable<any[]>{
-      return this._http.get(this._dataUrl)
+  public getBasicData(id:string): Observable<any[]>{
+      return this._http.get(this._dataUrl+id)
         .map((res:Response) => res.json());
   }
 
   public getData(mainFolder){
     console.log("get : " + mainFolder.name);
     this.mainFolder = mainFolder;
-      this.getBasicData().subscribe(
+      this.getBasicData(mainFolder.id).subscribe(
         files => {
           this.addDataDrive(files, mainFolder)
         }, //Bind to view
@@ -89,7 +91,6 @@ export class dataAPI {
       }
       else if (typeFile.type == "folder"){
         currentFolder.addFolder(typeFile.name, typeFile.id);
-        //this.addDataDrive(typeFile.children, currentFolder.getLastChildren()); //A supprimer apres
       }
       else {
         console.error("type non reconnu")
