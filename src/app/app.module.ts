@@ -9,8 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { routing } from './app.routes';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import {AuthGuard} from "./services/auth.guard";
-import { RegisterComponent } from './components/register/register.component';
+import {LoginService} from "./services/login.service";
 
 
 
@@ -20,7 +19,6 @@ import { RegisterComponent } from './components/register/register.component';
     FolderComponent,
     LoginComponent,
     MainPageComponent,
-    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +27,7 @@ import { RegisterComponent } from './components/register/register.component';
     RouterModule,
     routing
     ],
-  providers: [dataAPI, AuthGuard],
+  providers: [dataAPI, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

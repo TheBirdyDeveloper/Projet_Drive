@@ -1,17 +1,34 @@
 <div class="container">
   <section id="content">
     <form action="">
-      <h1>Login Form</h1>
-      <div>
-        <input type="text" placeholder="Username" required="" id="username" />
-      </div>
-      <div>
-        <input type="password" placeholder="Password" required="" id="password" />
-      </div>
-      <div>
-        <input (click)="goHome()" type="submit"  value="Log in" />
-        <input (click)="goRegister()" type="submit" value="Register"/>
-      </div>
+      <h1>Your drives</h1>
+      <table width="100%" height ="100%">
+        <tr>
+          <td width="50%">
+            <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=
+            https%3A%2F%2Fwww.googleapis.com%2
+            Fauth%2Fdrive&access_type=offlin
+            e&redirect_uri=http://localhost:80
+            80/drive-service/rest/googleDrive
+            /Response&response_type=code&clien
+            t_id=559854928491-b84f4ejfdhooej6rmqc
+            vqfo4gsiveph1.apps.googleusercontent.com">
+              <img src="../../../assets/gDriveIcon.png">
+            </a>
+          </td>
+          <td width="50%">
+            <a href="https://www.dropbox.com/1/oauth2/au
+            thorize?response_type=code&client_id
+            =p8ohrm26izkscws&redirect_uri=http:
+            //localhost:8080/drive-service/rest
+            /DropBox/Response">
+              <img src="../../../assets/dropBoxIcon.png">
+            </a>
+          </td>
+        </tr>
+      </table>
+        <input  (click)="goHome()" type="submit"  value="Start" />
+
     </form><!-- form -->
   </section><!-- content -->
 </div><!-- container -->
