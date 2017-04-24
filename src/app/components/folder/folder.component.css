@@ -2,8 +2,6 @@
   font-family: Arial, Tahoma, sans-serif;
   font-weight: 300;
   display: inline-block;
-  width: 60px;
-  height: 24px;
   background: #018fef;
   position: relative;
   border-radius: 2px;
@@ -65,6 +63,6 @@
 
 .fonctions{
   width: 240px;
-  height : 160px;
+  height : 200px;
   background: whitesmoke;
 }

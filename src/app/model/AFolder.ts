@@ -7,16 +7,21 @@ export abstract class AFolder {
   children : AFolder[];
   private rightClick : boolean;
   path : string[];
+  id : string;
+  size: number = 0;
+  drivers: string[];
+  rights: string[];
+
 
   public static currentCopy : AFolder = null;
 
-  constructor(name, pathLastFolder) {
+  constructor(name, pathLastFolder, id = null) {
     this.name = name;
     this.path = pathLastFolder;
     this.path=this.path.slice();
     this.path.push(name);
     this.rightClick = false;
-
+    this.id = id;
   }
 
   changeName(name : string){
@@ -35,7 +40,7 @@ export abstract class AFolder {
     AFolder.currentCopy = this;
     AFolder.currentCopy.type = type;
     //AFolder.currentCopy.children = this.children.slice();
-    var index = father.children.indexOf(this, 0);
+    let index = father.children.indexOf(this, 0);
     if (index> -1){
       father.children.splice(index, 1);
     }
@@ -45,13 +50,14 @@ export abstract class AFolder {
 
   onRightClick() {
     this.rightClick= !this.rightClick;
-    console.log(this.name + " : " +this.getStringPath());
+    //console.log(this.name + " : " +this.getStringPath());
+    console.log(this.name + " : " + this.id);
     return false;
   }
 
   //Pour plus tard
   getStringPath(){
-    var path ="";
+    let path ="";
     for (let current of this.path){
       if (path!="") {
         path += "/"+current;

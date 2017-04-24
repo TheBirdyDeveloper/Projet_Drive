@@ -2,24 +2,34 @@
   {
     "name": "folder1",
     "type": "folder",
+    "id": "001",
+    "drive": [],
     "children": [
       {
         "name": "file2",
         "type": "file",
+        "id": "011",
+        "drive": [],
         "children": null
       },
       {
         "name": "file3",
         "type": "file",
+        "id": "012",
+        "drive": [],
         "children": null
       },
       {
         "name": "folder2",
         "type": "folder",
+        "id": "013",
+        "drive": [],
         "children": [
           {
             "name": "file2",
             "type": "file",
+            "id": "131",
+            "drive": [],
             "children": null
           }
         ]
@@ -27,6 +37,8 @@
       {
         "name": "file4",
         "type": "file",
+        "id": "014",
+        "drive": [],
         "children": null
       }
     ]
@@ -34,6 +46,8 @@
   {
     "name": "file1",
     "type": "file",
+    "id": "002",
+    "drive": [],
     "children": null
   }
 
