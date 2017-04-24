@@ -9,41 +9,41 @@
 
       <div *ngIf="current.rightClick">
 
-        <ul>
+      <ul>
 
-        <div class="fonctions">
-        <i>
-        <!--Fonctions des Folders-->
-        <div>
+  <div class="fonctions">
+    <i>
+      <!--Fonctions des Folders-->
+      <div>
         <input [(ngModel)]="newNameFile" type=text placeholder="Nouveau fichier">
-          <button (click)="current.addFile(newNameFile)" type="button"> Ajouter</button>
-          </div>
+        <button (click)="current.addFile(newNameFile)" type="button"> Ajouter</button>
+      </div>
 
-          <div>
+      <div>
         <input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
         <button (click)="current.addFolder(newNameFolder)" type="button"> Ajouter</button>
-          </div>
-
-          <div>
-    <input [(ngModel)]="newName" type=text placeholder="Nouveau nom">
-    <button (click)="current.changeName(newName)" type="button"> Changer</button>
       </div>
 
-          <div>
-    <button (click)="current.copy(current.type)" type="button"> Copier</button>
+      <div>
+        <input [(ngModel)]="newName" type=text placeholder="Nouveau nom">
+        <button (click)="current.changeName(newName)" type="button"> Changer</button>
       </div>
 
-          <div>
-        <button (click)="current.paste(current.path)" type="button"> Coller</button>
+      <div>
+        <button (click)="current.copy(current.type)" type="button"> Copier</button>
       </div>
 
-          <div>
+      <div>
+        <button (click)="current.paste(current.path)" (click)="post()" type="button"> Coller</button>
+      </div>
+
+      <div>
         <button (click)="current.cut(current.type, folder)" type="button"> Couper</button>
       </div>
-</i>
-</div>
-          </ul>
-        <br>
+    </i>
+  </div>
+</ul>
+<br>
 
       </div>
 

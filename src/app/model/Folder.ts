@@ -9,8 +9,8 @@ export class Folder extends AFolder {
   expanded = false;
 
 
-  constructor(name, pathLastFolder) {
-    super(name, pathLastFolder);
+  constructor(name, pathLastFolder, id = null) {
+    super(name, pathLastFolder, id);
     this.children = [];
     this.type = "folder";
   }
@@ -21,15 +21,14 @@ export class Folder extends AFolder {
       return;
     }
 
-
     if (AFolder.currentCopy.type == "folder") {
       //console.log("ajout dossier");
-      this.addFolder(AFolder.currentCopy.name, path);
+      this.addFolder(AFolder.currentCopy.name, AFolder.currentCopy.id, path);
       this.copyChildren(<Folder>this.getLastChildren(), AFolder.currentCopy);
     }
 
     else if (AFolder.currentCopy.type == "file") {
-      this.addFile(AFolder.currentCopy.name, path);
+      this.addFile(AFolder.currentCopy.name, AFolder.currentCopy.id, path);
     }
     else {
       console.error("erreur de type pour coller");
@@ -44,15 +43,15 @@ export class Folder extends AFolder {
     return this.children[this.children.length - 1];
   }
 
-  addFolder(child: string, path: string[] = this.path) {
+  addFolder(child: string, id:string = null, path: string[] = this.path) {
     path = path.slice();
-    this.children.push(new Folder(child, path));
+    this.children.push(new Folder(child, path, id));
     this.children = this.children.slice();
   }
 
-  addFile(child: string, path: string[] = this.path) {
+  addFile(child: string, id:string = null, path: string[] = this.path) {
     path = path.slice();
-    this.children.push(new File(child, path));
+    this.children.push(new File(child, path, id));
     this.children = this.children.slice();
   }
 
@@ -61,7 +60,7 @@ export class Folder extends AFolder {
     if (current.type == "folder") {
 
       if (AFolder.currentCopy.name != current.name) {
-        newFolder.addFolder(current.name, father.path);
+        newFolder.addFolder(current.name, current.id, father.path);
         newFolder.copyChildren(<Folder>newFolder.getLastChildren(), current);
       }
       else{
@@ -71,7 +70,7 @@ export class Folder extends AFolder {
     }
 
     else if (current.type == "file") {
-      newFolder.addFile(current.name, father.path);
+      newFolder.addFile(current.name, current.id, father.path);
     }
     else {
       console.error("erreur de type pour coller");

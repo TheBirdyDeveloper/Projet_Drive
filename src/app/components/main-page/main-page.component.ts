@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {dataAPI} from "../../services/dataAPI";
 import {Folder} from "../../model/Folder";
 

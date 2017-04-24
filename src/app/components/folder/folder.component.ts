@@ -1,7 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {File} from "../../model/File";
+import {Component, Input} from '@angular/core';
 import {Folder} from "../../model/Folder";
-import {AFolder} from "../../model/AFolder";
 import {dataAPI} from "../../services/dataAPI";
 
 @Component({
@@ -20,8 +18,8 @@ export class FolderComponent {
   constructor(private myApi : dataAPI) {
   }
 
-  getData(){
-  //this.myApi.getData(this.folder);
-}
+  post(){
+    //this.myApi.postData();
+  }
 
 }

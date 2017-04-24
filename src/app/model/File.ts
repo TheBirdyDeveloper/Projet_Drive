@@ -6,8 +6,8 @@ import {AFolder} from "./AFolder";
 export class File extends AFolder{
 
 
-  constructor(name, pathLastFolder) {
-    super(name, pathLastFolder);
+  constructor(name, pathLastFolder, id = null) {
+    super(name, pathLastFolder, id);
     this.children = null;
     this.type = "file";
   }
