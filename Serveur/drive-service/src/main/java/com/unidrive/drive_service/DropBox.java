@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/DropBox")
 public class DropBox {
 	private static String code_;
-	
+	private static ClientDropBox client = new ClientDropBox();
 	private final static String clientID = "p8ohrm26izkscws";
 	private final static String clientSecret = "ovydv03up9b2zj7";
 	
@@ -26,11 +26,19 @@ public class DropBox {
 	//This method is called if HTML is request
 	@Path("/Response")
 	@GET
-	@Produces(MediaType.TEXT_HTML)
-	public String dorpBoxDriveResponse(@QueryParam("code") String code ) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public ListFileTranslator dorpBoxDriveResponse(@QueryParam("code") String code ) {
 	code_ = code;
-	System.out.println(code_);
-	return "L'authentification a ete effectue avec succes ! Pour accéder a tes fichiers de ton google drive bah va sur ton drive ! " +"\n";
+	client.getToken(code_);
+	return client.getFiles("");
+	}
+	
+	@Path("/Get")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public ListFileTranslator getChildren(@QueryParam("rep") String rep){
+	ListFileTranslator liste = client.getFiles(rep);
+	return liste;
 	}
 	
 //	@Path("/Post")

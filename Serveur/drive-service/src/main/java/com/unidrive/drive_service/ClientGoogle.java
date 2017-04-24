@@ -1,7 +1,6 @@
 package com.unidrive.drive_service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
@@ -17,7 +16,6 @@ import com.sun.jersey.multipart.MultiPart;
 import com.sun.jersey.multipart.file.FileDataBodyPart;
 import com.unidrive.file_google_drive.ChildList;
 import com.unidrive.file_google_drive.File;
-import com.unidrive.file_google_drive.FileList;
 
 public class ClientGoogle {
 	private static Client client = Client.create();
@@ -29,14 +27,12 @@ public class ClientGoogle {
 	private final static String clientSecret = "s_MJfLgiXsRcQyYGAiyxwUQ_";
 	
 	
-	//Permet de récuperer les 100 premiers fichiers 
-	public ListFileTranslator getFiles(){
+	public ListFileTranslator getFiles(String rep){
 		ChildList liste = new ChildList();
 		ListFileTranslator listeFT = new ListFileTranslator();
-		//List<File> listeF = new ArrayList<File>();
 		try {
 			webResource = client
-			   .resource("https://www.googleapis.com/drive/v2/files/root/children?access_token="+token_.getAccess_token());
+			   .resource("https://www.googleapis.com/drive/v2/files/"+rep+"/children?access_token="+token_.getAccess_token());
 			
 			response = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
@@ -45,27 +41,25 @@ public class ClientGoogle {
 			liste= mapper.readValue(output, ChildList.class);
 			
 			System.out.println("Output from Server .... \n");
-			for(int i = 0; i <liste.getItems().size();i++){
-				String currentID = liste.getItems().get(i).getId();
-				webResource = client
-						   .resource("https://www.googleapis.com/drive/v2/files/"+currentID+"?access_token="+token_.getAccess_token());
-				response = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-				File current = mapper.readValue(response.getEntity(String.class), File.class);
-				FileTranslator currentFT = new FileTranslator();
-				
-				currentFT.setName(current.getTitle());
-				System.out.println(currentFT.getName());
-				currentFT.setId(current.getId());
-				if(current.getMimeType().contains("folder")){
-					currentFT.setType("folder");
-				}else{
-					currentFT.setType("file");
+			if(liste.getItems() != null){
+				for(int i = 0; i <liste.getItems().size();i++){
+					String currentID = liste.getItems().get(i).getId();
+					webResource = client
+							   .resource("https://www.googleapis.com/drive/v2/files/"+currentID+"?access_token="+token_.getAccess_token());
+					response = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+					File current = mapper.readValue(response.getEntity(String.class), File.class);
+					FileTranslator currentFT = new FileTranslator();
+					
+					currentFT.setName(current.getTitle());
+					currentFT.setId(current.getId());
+					if(current.getMimeType().contains("folder")){
+						currentFT.setType("folder");
+					}else{
+						currentFT.setType("file");
+					}
+					currentFT.setDrive(new ArrayList<String>());
+					listeFT.add(currentFT);
 				}
-				currentFT.setDrive(new ArrayList<String>());
-				listeFT.add(currentFT);
-				
-				
-				//System.out.println(liste.getItems().get(i).getTitle());
 			}
 			
 		  } catch (Exception e) {
@@ -91,6 +85,7 @@ public class ClientGoogle {
 			    .post(ClientResponse.class, formData);
 			String output = response.getEntity(String.class);
 			token_= mapper.readValue(output, TrackToken.class);
+			System.out.println(token_);
 			
 			
 		}catch (Exception e) {

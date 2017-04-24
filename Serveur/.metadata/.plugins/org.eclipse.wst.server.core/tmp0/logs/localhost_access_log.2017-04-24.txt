@@ -1,0 +1,8 @@
+127.0.0.1 - - [24/Apr/2017:09:21:27 +0200] "GET / HTTP/1.1" 404 1005
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:09:21:28 +0200] "GET /drive-service/ HTTP/1.1" 200 57
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:09:21:50 +0200] "GET /drive-service/rest/googleDrive/OAuth?auth=mehidine HTTP/1.1" 500 4918
+127.0.0.1 - - [24/Apr/2017:09:27:58 +0200] "GET / HTTP/1.1" 404 1005
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:09:27:59 +0200] "GET /drive-service/ HTTP/1.1" 200 57
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:09:28:28 +0200] "GET /drive-service/rest/OAuth?auth=m HTTP/1.1" 404 1021
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:09:28:39 +0200] "GET /drive-service/rest/googleDrive/OAuth?auth=m HTTP/1.1" 200 369
+0:0:0:0:0:0:0:1 - - [24/Apr/2017:09:28:56 +0200] "GET /drive-service/rest/googleDrive/Response?code=4/TaxEBy2CmjVp10rOB5xFmklqmUnO9-eRttyOHV39oXM HTTP/1.1" 200 3731
