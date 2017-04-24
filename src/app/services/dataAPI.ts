@@ -89,7 +89,6 @@ export class dataAPI {
       }
       else if (typeFile.type == "folder"){
         currentFolder.addFolder(typeFile.name, typeFile.id);
-        //this.addDataDrive(typeFile.children, currentFolder.getLastChildren()); //A supprimer apres
       }
       else {
         console.error("type non reconnu")

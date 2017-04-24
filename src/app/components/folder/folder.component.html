@@ -4,7 +4,7 @@
 
 
     <span *ngIf="current.isFolder()">
-      <div class="folder" (dblclick)="current.toggle()" (contextmenu)="current.onRightClick($event)">{{ current.name }}
+      <div class="folder" (dblclick)="current.toggle()" (dblclick)="getData(current)" (contextmenu)="current.onRightClick($event)">{{ current.name }}
       </div>
 
       <div *ngIf="current.rightClick">
@@ -39,6 +39,9 @@
 
       <div>
         <button (click)="current.cut(current.type, folder)" type="button"> Couper</button>
+      </div>
+      <div>
+        <button (click)= refresh(current) type="button"> Rafraichir</button>
       </div>
     </i>
   </div>

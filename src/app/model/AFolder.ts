@@ -8,6 +8,10 @@ export abstract class AFolder {
   private rightClick : boolean;
   path : string[];
   id : string;
+  size: number = 0;
+  drivers: string[];
+  rights: string[];
+
 
   public static currentCopy : AFolder = null;
 
@@ -18,7 +22,6 @@ export abstract class AFolder {
     this.path.push(name);
     this.rightClick = false;
     this.id = id;
-
   }
 
   changeName(name : string){

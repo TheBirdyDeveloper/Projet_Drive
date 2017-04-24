@@ -22,4 +22,18 @@ export class FolderComponent {
     //this.myApi.postData();
   }
 
+  getData(folder){
+    if (folder.load){
+      return;
+    }
+
+  this.myApi.getData(folder);
+  folder.load=true;
+  }
+
+  refresh(folder){
+    folder.refresh();
+    this.getData(folder);
+  }
+
 }

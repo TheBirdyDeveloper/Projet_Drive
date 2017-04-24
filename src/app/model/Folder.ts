@@ -6,13 +6,15 @@ import {File} from "./File";
 //import {dataAPI} from "../services/dataAPI";
 
 export class Folder extends AFolder {
-  expanded = false;
 
+  expanded = false;
+  private _load:boolean;
 
   constructor(name, pathLastFolder, id = null) {
     super(name, pathLastFolder, id);
     this.children = [];
     this.type = "folder";
+    this._load = false;
   }
 
   paste(path: string[]) {
@@ -33,6 +35,14 @@ export class Folder extends AFolder {
     else {
       console.error("erreur de type pour coller");
     }
+  }
+
+  get load(): boolean {
+    return this._load;
+  }
+
+  set load(value: boolean) {
+    this._load = value;
   }
 
   toggle() {
@@ -77,5 +87,9 @@ export class Folder extends AFolder {
     }
   }
 }
+
+  refresh(){
+    this.load=false;
+  }
 
 }
