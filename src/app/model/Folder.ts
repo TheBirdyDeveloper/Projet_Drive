@@ -46,7 +46,7 @@ export class Folder extends AFolder {
   }
 
   toggle() {
-    this.expanded = !this.expanded;
+  this.expanded = !this.expanded;
   }
 
   getLastChildren() {

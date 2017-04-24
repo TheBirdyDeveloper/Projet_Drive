@@ -45,7 +45,7 @@ export class dataAPI {
     let options = new RequestOptions({ headers: headers });
     var post = JSON.stringify({attribute: 'name'})
 
-    this._http.post(this.serveur, post, options ).subscribe(
+    this._http.post(this._dataUrl2, post, options ).subscribe(
       data => console.log("POSTE")
     );
 }
@@ -89,6 +89,7 @@ export class dataAPI {
       }
       else if (typeFile.type == "folder"){
         currentFolder.addFolder(typeFile.name, typeFile.id);
+        //this.addDataDrive(typeFile.children, currentFolder.getLastChildren()); //A supprimer apres
       }
       else {
         console.error("type non reconnu")

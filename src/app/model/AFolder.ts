@@ -69,4 +69,8 @@ export abstract class AFolder {
     return path;
   }
 
+  share(email : string) {
+  console.log(email);
+  }
+
 }
