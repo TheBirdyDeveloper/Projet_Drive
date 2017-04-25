@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Folder} from "../../model/Folder";
 import {dataAPI} from "../../services/dataAPI";
+import {AFolder} from "../../model/AFolder";
 
 @Component({
   selector: 'app-folder',
@@ -18,8 +19,8 @@ export class FolderComponent {
   constructor(private myApi : dataAPI) {
   }
 
-  post(){
-    this.myApi.postData();
+  post(location:AFolder){
+    this.myApi.postData(location);
   }
 
   getData(folder){
@@ -34,6 +35,10 @@ export class FolderComponent {
   refresh(folder){
     folder.refresh();
     this.getData(folder);
+  }
+
+  requestSharingLink(file) {
+    console.log("Share" + file.name);
   }
 
 }

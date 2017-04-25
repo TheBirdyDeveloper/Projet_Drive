@@ -11,6 +11,7 @@ export abstract class AFolder {
   _size: number = 0;
   drivers: string[];
   rights: string[];
+  content:string;
 
 
   public static currentCopy : AFolder = null;

@@ -7,6 +7,7 @@ import {Observable}     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Folder} from "../model/Folder";
+import {AFolder} from "../model/AFolder";
 
 
 @Injectable()
@@ -43,11 +44,11 @@ export class dataAPI {
 
 }
 
-  public postData(){
+  public postData(location:AFolder){
     console.log("POST");
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    var post = JSON.stringify({attribute: 'name'})
+    var post = JSON.stringify(location.content);
 
     this._http.post(this.serveurDrive, post, options ).subscribe(
       data => console.log("POSTE")
