@@ -29,6 +29,7 @@ export class dataAPI {
       .map((res:Response) => res.json());
   }
 
+
   public getData(mainFolder){
     console.log("get : " + mainFolder.name);
     this.mainFolder = mainFolder;
