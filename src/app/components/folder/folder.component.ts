@@ -36,4 +36,8 @@ export class FolderComponent {
     this.getData(folder);
   }
 
+  requestSharingLink() {
+
+  }
+
 }

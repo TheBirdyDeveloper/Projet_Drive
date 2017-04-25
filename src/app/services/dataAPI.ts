@@ -24,8 +24,8 @@ export class dataAPI {
   constructor(private _http: Http) {}
 
   public getBasicData(id:string): Observable<any[]>{
-      return this._http.get(this.serveurDrive+id)
-        .map((res:Response) => res.json());
+    return this._http.get(this.serveurDrive+id)
+      .map((res:Response) => res.json());
   }
 
   public getData(mainFolder){
