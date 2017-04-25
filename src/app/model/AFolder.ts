@@ -5,10 +5,10 @@ export abstract class AFolder {
   name : string;
   type : string;
   children : AFolder[];
-  private rightClick : boolean;
+  rightClick : boolean;
   path : string[];
   id : string;
-  size: number = 0;
+  _size: number = 0;
   drivers: string[];
   rights: string[];
 
@@ -22,6 +22,14 @@ export abstract class AFolder {
     this.path.push(name);
     this.rightClick = false;
     this.id = id;
+  }
+
+  isOnGoogle(){
+    return ( this.drivers.indexOf("google")!=null );
+  }
+
+  isOnDropBox(){
+    return ( this.drivers.indexOf("dropBox")!=null );
   }
 
   changeName(name : string){
@@ -53,6 +61,10 @@ export abstract class AFolder {
     //console.log(this.name + " : " +this.getStringPath());
     console.log(this.name + " : " + this.id);
     return false;
+  }
+
+  get size(): number {
+    return this._size;
   }
 
   //Pour plus tard

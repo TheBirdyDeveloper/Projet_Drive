@@ -1,15 +1,14 @@
-<table>
 
-  <tr *ngFor="let current of folder.children">
+  <div *ngFor="let current of folder.children">
 
 
     <span *ngIf="current.isFolder()">
       <div class="folder" (dblclick)="current.toggle()" (dblclick)="getData(current)" (contextmenu)="current.onRightClick($event)">{{ current.name }}
       </div>
 
-      <div *ngIf="current.rightClick">
-
       <ul>
+
+      <div *ngIf="current.rightClick">
 
   <div >
     <i>
@@ -40,9 +39,13 @@
       <div>
         <button (click)="current.cut(current.type, folder)" type="button"> Couper</button>
       </div>
+
+      <div>
+        <button (click)="refresh(current)" type="button"> Refresh</button>
+      </div>
     </i>
   </div>
-</ul>
+
 <br>
 
       </div>
@@ -50,6 +53,7 @@
       <div *ngIf="current.expanded">
         <app-folder [folder]="current"></app-folder>
       </div>
+      </ul>
     </span>
 
     <span *ngIf="!current.isFolder()">
@@ -65,6 +69,5 @@
 
     </div>
     </span>
-  </tr>
-</table>
 
+  </div>

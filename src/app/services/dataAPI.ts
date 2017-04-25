@@ -12,9 +12,11 @@ import {Folder} from "../model/Folder";
 @Injectable()
 export class dataAPI {
   private _dataUrl: string = "./assets/google.json";
-  private _dataUrl2: string = "./assets/test2.json";
+  private _dataUrl2: string = "./assets/test.json";
 
   private serveurDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Get?rep=";
+  private serveurDropBox: string = "";
+
 
 
   public mainFolder : Folder;
@@ -47,7 +49,7 @@ export class dataAPI {
     let options = new RequestOptions({ headers: headers });
     var post = JSON.stringify({attribute: 'name'})
 
-    this._http.post(this._dataUrl2, post, options ).subscribe(
+    this._http.post(this.serveurDrive, post, options ).subscribe(
       data => console.log("POSTE")
     );
 }
@@ -69,14 +71,13 @@ export class dataAPI {
 =======
   */
 
-  addData(children, currentFolder){
+  addDataDropBox(children, currentFolder){
     for(let typeFile of children){
       if(typeFile.type == "file"){
         currentFolder.addFile(typeFile.name, typeFile.id);
       }
       else if (typeFile.type == "folder"){
         currentFolder.addFolder(typeFile.name, typeFile.id);
-        this.addData(typeFile.children, currentFolder.getLastChildren()); //A supprimer apres
       }
       else {
         console.error("type non reconnu")

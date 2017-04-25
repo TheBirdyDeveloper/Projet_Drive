@@ -89,6 +89,8 @@ export class Folder extends AFolder {
 }
 
   refresh(){
+    this.children =[];
+    this.rightClick = false;
     this.load=false;
   }
 

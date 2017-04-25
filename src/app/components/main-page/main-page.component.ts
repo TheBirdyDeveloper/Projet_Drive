@@ -14,4 +14,18 @@ export class MainPageComponent  {
   constructor(private myApi : dataAPI){
     this.myApi.getData(this.mainFolder);
   }
+
+  refresh(folder){
+    folder.refresh();
+    this.getData(folder);
+  }
+
+  getData(folder){
+    if (folder.load){
+      return;
+    }
+
+    this.myApi.getData(folder);
+    folder.load=true;
+  }
 }
