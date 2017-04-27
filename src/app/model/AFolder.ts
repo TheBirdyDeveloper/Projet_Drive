@@ -9,7 +9,7 @@ export abstract class AFolder {
   path : string[];
   id : string;
   _size: number = 0;
-  drivers: string[];
+  drivers: string[] = [];
   rights: string[];
   content:string;
 
@@ -48,7 +48,10 @@ export abstract class AFolder {
   cut(type:string, father: AFolder){
     AFolder.currentCopy = this;
     AFolder.currentCopy.type = type;
-    //AFolder.currentCopy.children = this.children.slice();
+    this.delete(father);
+  }
+
+  delete(father){
     let index = father.children.indexOf(this, 0);
     if (index> -1){
       father.children.splice(index, 1);
@@ -72,7 +75,8 @@ export abstract class AFolder {
   getStringPath(){
     let path ="";
     for (let current of this.path){
-      if (path!="") {
+      if (current=="root"){}
+      else if (path!="") {
         path += "/"+current;
       }
       else{
@@ -85,5 +89,9 @@ export abstract class AFolder {
   share(email : string) {
   console.log(email);
   }
+
+  // getFather(){
+  //   return this.path[this.path.length - 2];
+  // }
 
 }

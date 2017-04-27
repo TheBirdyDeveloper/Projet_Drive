@@ -41,4 +41,18 @@ export class FolderComponent {
     console.log("Share" + file.name);
   }
 
+  delete(child:AFolder, father){
+    console.log("current" + child.name);
+    console.log("father" + father.name);
+
+    if(child.drivers.indexOf("Drive")!=null) {
+      this.myApi.deleteDataDrive(child);
+    }
+    if(child.drivers.indexOf("DropBox")!=null) {
+      this.myApi.deleteDataDrive(child);
+    }
+
+    child.delete(father);
+  }
+
 }

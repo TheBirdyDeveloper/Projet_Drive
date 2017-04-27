@@ -43,6 +43,10 @@
       <div>
         <button (click)="refresh(current)" type="button"> Refresh</button>
       </div>
+
+      <div>
+        <button (click)="delete(current, folder)" type="button"> Supprimer</button>
+      </div>
     </i>
   </div>
 
@@ -67,7 +71,7 @@
         <button (click)="current.copy(current.type)" type="button"> Copier</button>
         <button (click)="current.cut(current.type, folder)" type="button"> Couper</button>
         <button (click)="requestSharingLink(current)" type="button"> Lien de partage</button>
-
+        <button (click)="delete(current, folder)" type="button"> Supprimer</button>
 
     </div>
     </span>

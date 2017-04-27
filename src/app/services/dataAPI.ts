@@ -15,8 +15,13 @@ export class dataAPI {
   private _dataUrl: string = "./assets/google.json";
   private _dataUrl2: string = "./assets/test.json";
 
-  private serveurDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Get?rep=";
-  private serveurDropBox: string = "";
+  private serveurGetDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Get?rep=";
+  private serveurPostDrive: string = "";
+  private serveurDeleteDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Delete?rep=";
+
+  private serveurGetDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Get?rep=";
+  private serveurPostDropBox: string = "";
+  private serveurDeleteDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Delete?rep=";
 
 
 
@@ -24,24 +29,41 @@ export class dataAPI {
 
   constructor(private _http: Http) {}
 
-  public getBasicData(id:string): Observable<any[]>{
-    return this._http.get(this.serveurDrive+id)
+  public getDataDrive(id:string): Observable<any[]>{
+    return this._http.get(this.serveurGetDrive+id)
+      .map((res:Response) => res.json());
+  }
+
+  public getDataDropBox(path:string): Observable<any[]>{
+    return this._http.get(this.serveurGetDropBox+path)
       .map((res:Response) => res.json());
   }
 
 
   public getData(mainFolder){
     console.log("get : " + mainFolder.name);
+
     this.mainFolder = mainFolder;
-      this.getBasicData(mainFolder.id).subscribe(
+      this.getDataDrive(mainFolder.id).subscribe(
         files => {
-          this.addDataDrive(files, mainFolder)
+          this.addData(files, mainFolder)
         }, //Bind to view
         err => {
           // Log errors if any
           console.log(err);
 
         });
+
+
+    this.getDataDropBox(mainFolder.getStringPath()).subscribe(
+      files => {
+        this.addData(files, mainFolder)
+      }, //Bind to view
+      err => {
+        // Log errors if any
+        console.log(err);
+
+      });
 
 }
 
@@ -51,10 +73,18 @@ export class dataAPI {
     let options = new RequestOptions({ headers: headers });
     var post = JSON.stringify(location.content);
 
-    this._http.post(this.serveurDrive, post, options ).subscribe(
+    this._http.post(this.serveurPostDrive, post, options ).subscribe(
       data => console.log("POSTE")
     );
 }
+
+  public deleteDataDrive(folder:AFolder){
+    this._http.delete(this.serveurDeleteDrive+folder.id);
+  }
+
+  public deleteDataDropBox(folder:AFolder){
+    this._http.delete(this.serveurDeleteDropBox+folder.getStringPath());
+  }
 
 /*
   private handleError (error: Response | any) {
@@ -73,21 +103,8 @@ export class dataAPI {
 =======
   */
 
-  addDataDropBox(children, currentFolder){
-    for(let typeFile of children){
-      if(typeFile.type == "file"){
-        currentFolder.addFile(typeFile.name, typeFile.id);
-      }
-      else if (typeFile.type == "folder"){
-        currentFolder.addFolder(typeFile.name, typeFile.id);
-      }
-      else {
-        console.error("type non reconnu")
-      }
-    }
-  }
 
-  addDataDrive(children, currentFolder){
+  addData(children, currentFolder){
     for(let typeFile of children.liste){
       if(typeFile.type == "file"){
         currentFolder.addFile(typeFile.name, typeFile.id);
