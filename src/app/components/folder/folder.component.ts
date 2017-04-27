@@ -45,10 +45,10 @@ export class FolderComponent {
     console.log("current" + child.name);
     console.log("father" + father.name);
 
-    if(child.drivers.indexOf("Drive")!=null) {
+    if(child.isOnGoogle()) {
       this.myApi.deleteDataDrive(child);
     }
-    if(child.drivers.indexOf("DropBox")!=null) {
+    if(child.isOnDropBox()) {
       this.myApi.deleteDataDrive(child);
     }
 

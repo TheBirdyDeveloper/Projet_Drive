@@ -26,7 +26,7 @@ export abstract class AFolder {
   }
 
   isOnGoogle(){
-    return ( this.drivers.indexOf("google")!=null );
+    return ( this.drivers.indexOf("googleDrive")!=null );
   }
 
   isOnDropBox(){
