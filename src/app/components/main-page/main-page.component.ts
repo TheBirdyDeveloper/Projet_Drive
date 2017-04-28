@@ -9,7 +9,7 @@ import {Folder} from "../../model/Folder";
 })
 export class MainPageComponent  {
 
-  public mainFolder = new Folder("root",[], "root");
+  public mainFolder = new Folder("Root",[], "Root");
 
   constructor(private myApi : dataAPI){
     this.myApi.getData(this.mainFolder);

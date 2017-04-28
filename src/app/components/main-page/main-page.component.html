@@ -1,19 +1,48 @@
-<div class="bg-primary text-white" (contextmenu)="mainFolder.onRightClick($event)">
-  {{ mainFolder.name | uppercase}}
-</div>
+<h1 class="page-header" (contextmenu)="mainFolder.onRightClick($event)">
+  {{ mainFolder.name}}
+</h1>
 
 
 <div *ngIf="mainFolder.rightClick">
 
   <!--Fonctions de Root-->
 
-  <input [(ngModel)]="newNameFile" type=text placeholder="Nouveau fichier">
-  <button (click)="mainFolder.addFile(newNameFile)" type="button"> Ajouter</button>
-  <input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
-  <button (click)="mainFolder.addFolder(newNameFolder)" type="button"> Ajouter</button>
+  <div >
+    <i>
+      <!--Fonctions des Folders-->
+      <div class="row">
+        <div class="col-lg-4  ">
+          <div class="input-group">
+            <input [(ngModel)]="newNameFile" type="text" class="form-control" placeholder="Nom du fichier">
+            <span class="input-group-btn">
+                <button (click)="mainFolder.addFile(newNameFile)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter fichier</button>
+              </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
 
-  <button (click)="mainFolder.paste(mainFolder.path)" type="button"> Coller</button>
-    <button (click)="refresh(mainFolder)" type="button"> Refresh</button>
+
+        <button (click)="current.paste(current.path)" (click)="post(current)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-paste"></span> Coller</button>
+
+        <button (click)="refresh(mainFolder)" type="button" class="btn btn-info"><span class="glyphicon glyphicon-refresh"></span> Rafraîchir</button>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-4">
+          <div class="input-group">
+            <input [(ngModel)]="newNameFolder" type="text" class="form-control" placeholder="Nom du dossier">
+            <span class="input-group-btn">
+              <button (click)="mainFolder.addFolder(newNameFolder)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter dossier</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+
+      </div>
+
+
+    </i>
+  </div>
 
 </div>
 

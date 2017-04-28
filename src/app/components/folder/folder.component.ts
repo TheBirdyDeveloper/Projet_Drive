@@ -46,7 +46,7 @@ export class FolderComponent {
   }
 
   requestSharingLink(file) {
-    console.log("Share" + file.name);
+    console.log("Share  :" + file.name);
   }
 
   delete(child:AFolder, father){

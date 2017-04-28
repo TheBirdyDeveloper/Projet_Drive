@@ -67,3 +67,10 @@
   background: whitesmoke;
 }
 
+.glyphicon.glyphicon-file {
+  font-size: 25px;
+}
+
+.glyphicon.glyphicon-folder-open {
+  font-size: 25px;
+}
