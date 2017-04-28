@@ -15,7 +15,7 @@
       <!--Fonctions des Folders-->
       <div>
         <input [(ngModel)]="newNameFile" type=text placeholder="Nouveau fichier">
-        <button (click)="current.addFile(newNameFile)" type="button"> Ajouter</button>
+        <button (click)="current.addFile(newNameFile)" (click)="post(folder)" type="button"> Ajouter</button>
       </div>
 
       <div>
@@ -33,7 +33,7 @@
       </div>
 
       <div>
-        <button (click)="current.paste(current.path)" (click)="post(current)" type="button"> Coller</button>
+        <button (click)="current.paste(current.path)" (click)="post(folder)" type="button"> Coller</button>
       </div>
 
       <div>

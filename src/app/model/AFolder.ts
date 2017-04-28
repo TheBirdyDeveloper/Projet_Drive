@@ -26,11 +26,11 @@ export abstract class AFolder {
   }
 
   isOnGoogle(){
-    return ( this.drivers.indexOf("googleDrive")!=null );
+    return (this.drivers.indexOf("googleDrive")!=-1 );
   }
 
   isOnDropBox(){
-    return ( this.drivers.indexOf("dropBox")!=null );
+    return ( this.drivers.indexOf("dropBox")!=-1 );
   }
 
   changeName(name : string){

@@ -11,5 +11,4 @@ export class File extends AFolder{
     this.children = null;
     this.type = "file";
   }
-
 }

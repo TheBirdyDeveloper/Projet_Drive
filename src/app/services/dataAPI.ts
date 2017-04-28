@@ -23,8 +23,6 @@ export class dataAPI {
   private serveurPostDropBox: string = "";
   private serveurDeleteDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Delete?rep=";
 
-
-
   public mainFolder : Folder;
 
   constructor(private _http: Http) {}
@@ -41,12 +39,10 @@ export class dataAPI {
 
 
   public getData(mainFolder){
-    console.log("get : " + mainFolder.name);
-
     this.mainFolder = mainFolder;
       this.getDataDrive(mainFolder.id).subscribe(
         files => {
-          this.addData(files, mainFolder)
+          this.addData(files, mainFolder, "googleDrive")
         }, //Bind to view
         err => {
           // Log errors if any
@@ -57,7 +53,7 @@ export class dataAPI {
 
     this.getDataDropBox(mainFolder.getStringPath()).subscribe(
       files => {
-        this.addData(files, mainFolder)
+        this.addData(files, mainFolder, "dropBox")
       }, //Bind to view
       err => {
         // Log errors if any
@@ -69,21 +65,17 @@ export class dataAPI {
 
   public postData(location:AFolder){
     console.log("POST");
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    var post = JSON.stringify(location.content);
-
-    this._http.post(this.serveurPostDrive, post, options ).subscribe(
-      data => console.log("POSTE")
-    );
+    var post = JSON.stringify(location.name);
+    this._http.post(this.serveurPostDrive, post ).subscribe();
 }
 
+
   public deleteDataDrive(folder:AFolder){
-    this._http.delete(this.serveurDeleteDrive+folder.id);
+    this._http.delete(this.serveurDeleteDrive+folder.id).subscribe();
   }
 
   public deleteDataDropBox(folder:AFolder){
-    this._http.delete(this.serveurDeleteDropBox+folder.getStringPath());
+    this._http.delete(this.serveurDeleteDropBox+folder.getStringPath()).subscribe();
   }
 
 /*
@@ -104,13 +96,15 @@ export class dataAPI {
   */
 
 
-  addData(children, currentFolder){
+  addData(children, currentFolder, driver:string){
     for(let typeFile of children.liste){
       if(typeFile.type == "file"){
         currentFolder.addFile(typeFile.name, typeFile.id);
+        currentFolder.getLastChildren().drivers.push(driver);
       }
       else if (typeFile.type == "folder"){
         currentFolder.addFolder(typeFile.name, typeFile.id);
+        currentFolder.getLastChildren().drivers.push(driver);
       }
       else {
         console.error("type non reconnu")

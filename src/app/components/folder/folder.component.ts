@@ -42,14 +42,13 @@ export class FolderComponent {
   }
 
   delete(child:AFolder, father){
-    console.log("current" + child.name);
-    console.log("father" + father.name);
 
     if(child.isOnGoogle()) {
       this.myApi.deleteDataDrive(child);
     }
+
     if(child.isOnDropBox()) {
-      this.myApi.deleteDataDrive(child);
+      this.myApi.deleteDataDropBox(child);
     }
 
     child.delete(father);
