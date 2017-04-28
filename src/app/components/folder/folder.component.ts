@@ -19,8 +19,16 @@ export class FolderComponent {
   constructor(private myApi : dataAPI) {
   }
 
-  post(location:AFolder){
-    this.myApi.postData(location);
+  post(folder:AFolder ){
+    this.myApi.postData(folder);
+  }
+
+  postFile(folder:AFolder ){
+    this.myApi.postData(folder);
+  }
+
+  postFolder(folder:AFolder ){
+    this.myApi.postData(folder);
   }
 
   getData(folder){

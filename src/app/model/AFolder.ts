@@ -15,6 +15,7 @@ export abstract class AFolder {
 
 
   public static currentCopy : AFolder = null;
+  public static currentSelect : AFolder = null;
 
   constructor(name, pathLastFolder, id = null) {
     this.name = name;
@@ -23,6 +24,10 @@ export abstract class AFolder {
     this.path.push(name);
     this.rightClick = false;
     this.id = id;
+  }
+
+  changeCurrentSelect(){
+    AFolder.currentSelect = this;
   }
 
   isOnGoogle(){

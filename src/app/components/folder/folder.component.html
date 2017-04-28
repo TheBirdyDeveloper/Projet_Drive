@@ -3,7 +3,7 @@
 
 
     <span *ngIf="current.isFolder()">
-      <div class="folder" (dblclick)="current.toggle()" (dblclick)="getData(current)" (contextmenu)="current.onRightClick($event)">{{ current.name }}
+      <div class="folder" (dblclick)="current.toggle()" (click)="current.changeCurrentSelect()" (dblclick)="getData(current)" (contextmenu)="current.onRightClick($event)">{{ current.name }}
       </div>
 
       <ul>
@@ -15,12 +15,12 @@
       <!--Fonctions des Folders-->
       <div>
         <input [(ngModel)]="newNameFile" type=text placeholder="Nouveau fichier">
-        <button (click)="current.addFile(newNameFile)" (click)="post(folder)" type="button"> Ajouter</button>
+        <button (click)="current.addFile(newNameFile)" (click)="postFile(current)" type="button"> Ajouter</button>
       </div>
 
       <div>
         <input [(ngModel)]="newNameFolder" type=text placeholder="Nouveau dossier">
-        <button (click)="current.addFolder(newNameFolder)" type="button"> Ajouter</button>
+        <button (click)="current.addFolder(newNameFolder)" (click)="postFolder(current)" type="button"> Ajouter</button>
       </div>
 
       <div>
@@ -33,7 +33,7 @@
       </div>
 
       <div>
-        <button (click)="current.paste(current.path)" (click)="post(folder)" type="button"> Coller</button>
+        <button (click)="current.paste(current.path)" (click)="post(current)" type="button"> Coller</button>
       </div>
 
       <div>
@@ -61,7 +61,7 @@
     </span>
 
     <span *ngIf="!current.isFolder()">
-       <div class="file-icon" (contextmenu)="current.onRightClick($event)">{{ current.name }}</div>
+       <div class="file-icon" (click)="current.changeCurrentSelect()" (contextmenu)="current.onRightClick($event)">{{ current.name }}</div>
       <div *ngIf="current.rightClick">
 
                 <!--Fonctions des Files-->
