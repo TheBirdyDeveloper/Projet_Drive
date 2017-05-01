@@ -18,7 +18,7 @@
             <div class="input-group">
               <input [(ngModel)]="newNameFile" type="text" class="form-control" placeholder="Nom du fichier">
               <span class="input-group-btn">
-                <button (click)="current.addFile(newNameFile)" class="btn btn-primary" (click)="postFile(current)" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter fichier</button>
+                <button (click)="addFile(current, newNameFile)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter fichier</button>
               </span>
             </div><!-- /input-group -->
           </div><!-- /.col-lg-6 -->
@@ -31,11 +31,11 @@
 
 
 
-        <button (click)="current.paste(current.path)" (click)="post(current)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-paste"></span> Coller</button>
+        <button (click)="paste(current)" (click)="post(current, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-paste"></span> Coller</button>
 
 
 
-        <button (click)="current.cut(current.type, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-scissors"></span> Couper</button>
+        <button (click)="cut(current, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-scissors"></span> Couper</button>
 
 
 
@@ -56,7 +56,7 @@
           <div class="input-group">
             <input [(ngModel)]="newNameFolder" type="text" class="form-control" placeholder="Nom du dossier">
             <span class="input-group-btn">
-              <button (click)="current.addFolder(newNameFolder)" (click)="postFolder(current)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter dossier</button>
+              <button (click)="addFolder(current, newNameFolder)" (click)="post(current, folder)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter dossier</button>
             </span>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
@@ -69,7 +69,7 @@
           <div class="input-group">
             <input [(ngModel)]="changeNameFolder" type="text" class="form-control" placeholder="Nouveau nom">
             <span class="input-group-btn">
-              <button (click)="current.changeName(changeNameFolder)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Changer de nom</button>
+              <button (click)="changeName(current, changeNameFolder)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Changer de nom</button>
             </span>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
@@ -97,9 +97,9 @@
                 <!--Fonctions des Files-->
 
     <input [(ngModel)]="changeNameFile" type=text placeholder="Nouveau nom">
-    <button (click)="current.changeName(changeNameFile)" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Changer</button>
+    <button (click)="changeName(current, changeNameFile)" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Changer</button>
         <button (click)="current.copy(current.type)" type="button" class="btn btn-success"> <span class="glyphicon glyphicon-copy"></span> Copier</button>
-        <button (click)="current.cut(current.type, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-scissors"></span> Couper</button>
+        <button (click)="cut(current, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-scissors"></span> Couper</button>
         <button (click)="requestSharingLink(current)" type="button" class="btn btn-info"> <span class="glyphicon glyphicon-link"></span> Lien de partage</button>
         <button (click)="delete(current, folder)" type="button" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Supprimer</button>
 

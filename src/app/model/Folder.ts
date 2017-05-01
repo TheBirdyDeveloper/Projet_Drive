@@ -24,13 +24,16 @@ export class Folder extends AFolder {
     }
 
     if (AFolder.currentCopy.type == "folder") {
-      //console.log("ajout dossier");
       this.addFolder(AFolder.currentCopy.name, AFolder.currentCopy.id, path);
       this.copyChildren(<Folder>this.getLastChildren(), AFolder.currentCopy);
+      this.getLastChildren().drivers = AFolder.currentCopy.drivers
+      this.getLastChildren().drivers = this.getLastChildren().drivers.slice();
     }
 
     else if (AFolder.currentCopy.type == "file") {
       this.addFile(AFolder.currentCopy.name, AFolder.currentCopy.id, path);
+      this.getLastChildren().drivers = AFolder.currentCopy.drivers
+      this.getLastChildren().drivers = this.getLastChildren().drivers.slice();
     }
     else {
       console.error("erreur de type pour coller");
@@ -69,6 +72,18 @@ export class Folder extends AFolder {
     this.getLastChildren().drivers = this.getLastChildren().drivers.slice();
   }
 
+  addFolderGetRequest(child: string, id:string = null, path: string[] = this.path) {
+    path = path.slice();
+    this.children.push(new Folder(child, path, id));
+    this.children = this.children.slice();
+  }
+
+  addFileGetRequest(child: string, id:string = null, path: string[] = this.path) {
+    path = path.slice();
+    this.children.push(new File(child, path, id));
+    this.children = this.children.slice();
+  }
+
   copyChildren(newFolder: Folder, father: AFolder) {
     for (let current of father.children) {
     if (current.type == "folder") {
@@ -80,7 +95,6 @@ export class Folder extends AFolder {
       else{
         //console.log("attention emboitement d'un folder dans le même folder pour coller")
       }
-
     }
 
     else if (current.type == "file") {

@@ -19,22 +19,42 @@ export class FolderComponent {
   constructor(private myApi : dataAPI) {
   }
 
-  post(folder:AFolder ){
-    this.myApi.postDataDrive(folder);
+  cut (current:AFolder, father:Folder){
+    current.copy(current.type);
+    this.delete(current, father);
   }
 
-  postFile(folder:AFolder ){
-    this.myApi.postDataDrive(folder);
+  addFile(current:Folder, name:string){
+    current.addFile(name);
+    this.post(current.getLastChildren(), current);
+
   }
 
-  postFolder(folder:AFolder ){
-    this.myApi.postDataDrive(folder);
+  addFolder(current:Folder, name:string){
+    current.addFolder(name);
+    this.post(current.getLastChildren(), current);
+  }
+
+  post(current:AFolder, father:Folder){
+    if (father.isOnDropBox()){
+      this.myApi.postDataDropBox(current, father);
+    }
+
+    if (father.isOnGoogle()) {
+      this.myApi.postDataDrive(current, father);
+    }
+  }
+
+  paste(father:Folder){
+    father.paste(father.path);
+    this.post(AFolder.currentCopy, father);
   }
 
   getData(folder){
     if (folder.load){
       return;
     }
+    folder.refresh();
 
   this.myApi.getData(folder);
   folder.load=true;
@@ -54,12 +74,24 @@ export class FolderComponent {
     if(child.isOnGoogle()) {
       this.myApi.deleteDataDrive(child);
     }
-
     if(child.isOnDropBox()) {
       this.myApi.deleteDataDropBox(child);
     }
 
     child.delete(father);
+  }
+
+  changeName(current:AFolder, name:string){
+    current.changeName(name);
+
+    if(current.isOnGoogle()) {
+      this.myApi.changeNameDrive(current, name);
+    }
+
+    if(current.isOnDropBox()) {
+      this.myApi.changeNameDropBox(current, name);
+    }
+
   }
 
 }

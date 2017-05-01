@@ -2,7 +2,7 @@
  * Created by Marco de Coco on 11/04/2017.
  */
 import {Injectable} from '@angular/core';
-import {Http, Response, RequestOptions, Headers } from '@angular/http';
+import {Http, Response } from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -13,16 +13,17 @@ import {AFolder} from "../model/AFolder";
 
 @Injectable()
 export class dataAPI {
-  private _dataUrl: string = "./assets/google.json";
-  private _dataUrl2: string = "./assets/test.json";
 
   private serveurGetDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Get?rep=";
-  private serveurPostDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Post?rep=";
+  private serveurPostDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Upload?";
   private serveurDeleteDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Delete?rep=";
+  private serveurRenameDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Rename?rep=";
 
   private serveurGetDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Get?rep=";
-  private serveurPostDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Post?rep=";
+  private serveurPostDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Upload?";
   private serveurDeleteDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Delete?rep=";
+  private serveurRenameDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Rename?rep=";
+
 
   public mainFolder : Folder;
 
@@ -64,19 +65,35 @@ export class dataAPI {
 
 }
 
-  public postDataDrive(location:AFolder){
-  console.log("POST");
-  var post = JSON.stringify(location.name);
-  this._http.post(this.serveurPostDrive+location.name, null).subscribe();
+  public postDataDrive(current:AFolder, father:Folder){
+  console.log("POSTDrive");
+    if(father.getStringPath()!="") {
+      this._http.post(this.serveurPostDrive + "name=" + current.name + "&parent=" + father.id, null).subscribe(files => {
+        this.addId(files, current)
+      });
+    }
+    else{
+      this._http.post(this.serveurPostDrive + "name=" + current.name, null).subscribe(files => {
+        this.addId(files, current)
+      });
+    }
 }
 
-  public postDataDropBox(location:AFolder){
-    console.log("POST");
-    var post = JSON.stringify(location.name);
-    this._http.post(this.serveurPostDrive+location.name, null).subscribe();
-    this._http.post
+  public postDataDropBox(current:AFolder, father:Folder){ //A modifier !!!
+    console.log("POSTDrop");
+    if(father.getStringPath()!="") {
+      this._http.post(this.serveurPostDropBox + "path=" + father.getStringPath() +"/"+ current.name, null).subscribe();
+    }
+    else{
+      this._http.post(this.serveurPostDropBox + "path=" + father.getStringPath() + current.name, null).subscribe();
+    }
   }
 
+  private addId(files, folder:AFolder){
+    if (files.id != null){
+      folder.id = files.id;
+    }
+  }
 
   public deleteDataDrive(folder:AFolder){
     this._http.delete(this.serveurDeleteDrive+folder.id).subscribe();
@@ -84,6 +101,16 @@ export class dataAPI {
 
   public deleteDataDropBox(folder:AFolder){
     this._http.delete(this.serveurDeleteDropBox+folder.getStringPath()).subscribe();
+  }
+
+  changeNameDrive(current:AFolder, name:string){
+    var put = JSON.stringify({"newName" : name,"id":current.id});
+    this._http.put(this.serveurRenameDrive+current.id, put).subscribe();
+  }
+
+  changeNameDropBox(current:AFolder, name:string){
+    var put = JSON.stringify({"newName" : name,"path":current.getStringPath()});
+    this._http.put(this.serveurRenameDropBox+current.getStringPath(), put).subscribe();
   }
 
 /*
@@ -109,7 +136,7 @@ export class dataAPI {
     for(let typeFile of children.liste){
 
       if(typeFile.type == "file"){
-          currentFolder.addFile(typeFile.name, typeFile.id);
+          currentFolder.addFileGetRequest(typeFile.name, typeFile.id);
           currentFolder.getLastChildren().drivers.push(driver);
         }
 
@@ -131,7 +158,7 @@ export class dataAPI {
           }
         }
         else {
-          currentFolder.addFolder(typeFile.name, typeFile.id);
+          currentFolder.addFolderGetRequest(typeFile.name, typeFile.id);
           currentFolder.getLastChildren().drivers.push(driver);
         }
       }

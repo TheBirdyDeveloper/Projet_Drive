@@ -28,8 +28,6 @@ export abstract class AFolder {
 
   changeCurrentSelect(){
     AFolder.currentSelect = this;
-    console.log("newSelected "+AFolder.currentSelect.name);
-    console.log("newPath "+AFolder.currentSelect.getStringPath());
   }
 
   isOnGoogle(){
@@ -49,14 +47,14 @@ export abstract class AFolder {
   copy(type:string){
     AFolder.currentCopy = this;
     AFolder.currentCopy.type = type;
-    //AFolder.currentCopy.children = this.children.slice();
+    //AFolder.currentCopy.path = AFolder.currentCopy.path.slice();
   }
 
-  cut(type:string, father: AFolder){
-    AFolder.currentCopy = this;
-    AFolder.currentCopy.type = type;
-    this.delete(father);
-  }
+  // cut(type:string, father: AFolder){
+  //   AFolder.currentCopy = this;
+  //   AFolder.currentCopy.type = type;
+  //   this.delete(father);
+  // }
 
   delete(father){
     let index = father.children.indexOf(this, 0);
@@ -69,7 +67,7 @@ export abstract class AFolder {
 
   onRightClick() {
     this.rightClick= !this.rightClick;
-    console.log(this.name + " : " + this.drivers + " "+this.id);
+    console.log(this.drivers);
     return false;
   }
 
@@ -106,9 +104,5 @@ export abstract class AFolder {
   share(email : string) {
   console.log(email);
   }
-
-  // getFather(){
-  //   return this.path[this.path.length - 2];
-  // }
 
 }
