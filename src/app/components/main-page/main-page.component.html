@@ -1,13 +1,15 @@
 <div (click)="updateSelected()">
   <div class="row">
+    <div class="col-lg-15  ">
 <h1 class="page-header" (contextmenu)="mainFolder.onRightClick($event)">
   {{ mainFolder.name | uppercase}}
 
   <span *ngIf="(currentSelect!=null)">
-    <h2>{{currentSelect.getStringPath()}}</h2>
+    <i>{{currentSelect.getStringPathDisplay()}}</i>
   </span>
 
 </h1>
+    </div>
   </div>
 
 

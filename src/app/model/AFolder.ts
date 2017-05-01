@@ -92,6 +92,17 @@ export abstract class AFolder {
     return path;
   }
 
+  getStringPathDisplay(){
+    let path ="";
+    for (let current of this.path){
+      if (current=="root"){}
+      else {
+        path += " > "+current;
+      }
+    }
+    return path;
+  }
+
   share(email : string) {
   console.log(email);
   }
