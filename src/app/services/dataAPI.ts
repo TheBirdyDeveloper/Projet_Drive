@@ -10,17 +10,18 @@ import {Folder} from "../model/Folder";
 import {AFolder} from "../model/AFolder";
 
 
+
 @Injectable()
 export class dataAPI {
   private _dataUrl: string = "./assets/google.json";
   private _dataUrl2: string = "./assets/test.json";
 
   private serveurGetDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Get?rep=";
-  private serveurPostDrive: string = "";
+  private serveurPostDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Post?rep=";
   private serveurDeleteDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Delete?rep=";
 
   private serveurGetDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Get?rep=";
-  private serveurPostDropBox: string = "";
+  private serveurPostDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Post?rep=";
   private serveurDeleteDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Delete?rep=";
 
   public mainFolder : Folder;
@@ -63,11 +64,18 @@ export class dataAPI {
 
 }
 
-  public postData(location:AFolder){
+  public postDataDrive(location:AFolder){
+  console.log("POST");
+  var post = JSON.stringify(location.name);
+  this._http.post(this.serveurPostDrive+location.name, null).subscribe();
+}
+
+  public postDataDropBox(location:AFolder){
     console.log("POST");
     var post = JSON.stringify(location.name);
-    this._http.post(this.serveurPostDrive, post ).subscribe();
-}
+    this._http.post(this.serveurPostDrive+location.name, null).subscribe();
+    this._http.post
+  }
 
 
   public deleteDataDrive(folder:AFolder){
@@ -97,14 +105,35 @@ export class dataAPI {
 
 
   addData(children, currentFolder, driver:string){
+
     for(let typeFile of children.liste){
+
       if(typeFile.type == "file"){
-        currentFolder.addFile(typeFile.name, typeFile.id);
-        currentFolder.getLastChildren().drivers.push(driver);
-      }
+          currentFolder.addFile(typeFile.name, typeFile.id);
+          currentFolder.getLastChildren().drivers.push(driver);
+        }
+
       else if (typeFile.type == "folder"){
-        currentFolder.addFolder(typeFile.name, typeFile.id);
-        currentFolder.getLastChildren().drivers.push(driver);
+
+        let existAlready = false;
+
+        for (let current of currentFolder.children){
+          if (current.name == typeFile.name){
+            var sharedFolder = current;
+              existAlready = true;
+          }
+        }
+
+        if (existAlready){
+          sharedFolder.drivers.push(driver);
+          if (driver == "googleDrive"){
+            sharedFolder.id=typeFile.id;
+          }
+        }
+        else {
+          currentFolder.addFolder(typeFile.name, typeFile.id);
+          currentFolder.getLastChildren().drivers.push(driver);
+        }
       }
       else {
         console.error("type non reconnu")

@@ -28,6 +28,8 @@ export abstract class AFolder {
 
   changeCurrentSelect(){
     AFolder.currentSelect = this;
+    console.log("newSelected "+AFolder.currentSelect.name);
+    console.log("newPath "+AFolder.currentSelect.getStringPath());
   }
 
   isOnGoogle(){
@@ -67,8 +69,7 @@ export abstract class AFolder {
 
   onRightClick() {
     this.rightClick= !this.rightClick;
-    //console.log(this.name + " : " +this.getStringPath());
-    console.log(this.name + " : " + this.id);
+    console.log(this.name + " : " + this.drivers + " "+this.id);
     return false;
   }
 

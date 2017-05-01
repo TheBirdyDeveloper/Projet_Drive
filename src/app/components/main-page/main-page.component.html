@@ -1,6 +1,14 @@
+<div (click)="updateSelected()">
+  <div class="row">
 <h1 class="page-header" (contextmenu)="mainFolder.onRightClick($event)">
-  {{ mainFolder.name}}
+  {{ mainFolder.name | uppercase}}
+
+  <span *ngIf="(currentSelect!=null)">
+    <h2>{{currentSelect.getStringPath()}}</h2>
+  </span>
+
 </h1>
+  </div>
 
 
 <div *ngIf="mainFolder.rightClick">
@@ -27,6 +35,7 @@
 
       </div>
 
+
       <div class="row">
 
         <div class="col-lg-4">
@@ -44,7 +53,11 @@
     </i>
   </div>
 
+  <br>
+
 </div>
+
+
 
 <app-folder [folder]= "mainFolder"></app-folder>
 
@@ -78,4 +91,7 @@
 
 
 <div id='content-main' class='container' style="padding-top: 80px">
+</div>
+
+
 </div>

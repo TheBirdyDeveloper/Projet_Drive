@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {dataAPI} from "../../services/dataAPI";
 import {Folder} from "../../model/Folder";
+import {AFolder} from "../../model/AFolder";
 
 @Component({
   selector: 'app-main-page',
@@ -9,7 +10,8 @@ import {Folder} from "../../model/Folder";
 })
 export class MainPageComponent  {
 
-  public mainFolder = new Folder("Root",[], "Root");
+  public mainFolder = new Folder("root",[], "root");
+  public currentSelect = null;
 
   constructor(private myApi : dataAPI){
     this.myApi.getData(this.mainFolder);
@@ -18,6 +20,10 @@ export class MainPageComponent  {
   refresh(folder){
     folder.refresh();
     this.getData(folder);
+  }
+
+  updateSelected(){
+    this.currentSelect = AFolder.currentSelect;
   }
 
   getData(folder){

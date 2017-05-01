@@ -57,12 +57,16 @@ export class Folder extends AFolder {
     path = path.slice();
     this.children.push(new Folder(child, path, id));
     this.children = this.children.slice();
+    this.getLastChildren().drivers = this.drivers;
+    this.getLastChildren().drivers = this.getLastChildren().drivers.slice();
   }
 
   addFile(child: string, id:string = null, path: string[] = this.path) {
     path = path.slice();
     this.children.push(new File(child, path, id));
     this.children = this.children.slice();
+    this.getLastChildren().drivers = this.drivers;
+    this.getLastChildren().drivers = this.getLastChildren().drivers.slice();
   }
 
   copyChildren(newFolder: Folder, father: AFolder) {

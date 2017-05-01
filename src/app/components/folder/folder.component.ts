@@ -20,15 +20,15 @@ export class FolderComponent {
   }
 
   post(folder:AFolder ){
-    this.myApi.postData(folder);
+    this.myApi.postDataDrive(folder);
   }
 
   postFile(folder:AFolder ){
-    this.myApi.postData(folder);
+    this.myApi.postDataDrive(folder);
   }
 
   postFolder(folder:AFolder ){
-    this.myApi.postData(folder);
+    this.myApi.postDataDrive(folder);
   }
 
   getData(folder){
