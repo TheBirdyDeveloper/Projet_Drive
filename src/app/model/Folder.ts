@@ -3,7 +3,6 @@
  */
 import {AFolder} from "./AFolder";
 import {File} from "./File";
-//import {dataAPI} from "../services/dataAPI";
 
 export class Folder extends AFolder {
 
