@@ -8,9 +8,7 @@ export class Information {
   private _availableOnDropBox:number;
   private _useOnDropBox:number;
 
-  constructor() {
-
-  }
+  constructor() {  }
 
   get availableOnDrive(): number {
     return this._availableOnDrive;

@@ -9,19 +9,29 @@ import {Information} from "../../model/Information";
   templateUrl: 'main-page.component.html',
   styleUrls: ['main-page.component.css']
 })
+
 export class MainPageComponent  {
 
   public mainFolder = new Folder("root",[], "root");
   public currentSelect = null;
-  public static information = new Information();
+  public information:Information = null;
 
   constructor(private myApi : dataAPI){
     this.myApi.getData(this.mainFolder);
+    this.information = new Information();
+    this.refreshInfos();
+  }
+
+  refreshInfos(){
+    this.myApi.getInfos(this.information);
+    console.log("Drive ::: use : " + this.information.useOnDrive+" available : "+this.information.availableOnDrive);
+    console.log("DropBox ::: use : " + this.information.useOnDropBox+" available : "+this.information.availableOnDropBox);
   }
 
   refresh(folder){
     folder.refresh();
     this.getData(folder);
+    this.refreshInfos();
   }
 
   updateSelected(){

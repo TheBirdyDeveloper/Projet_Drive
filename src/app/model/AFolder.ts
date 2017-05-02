@@ -67,7 +67,6 @@ export abstract class AFolder {
 
   onRightClick() {
     this.rightClick= !this.rightClick;
-    console.log(this.drivers);
     return false;
   }
 

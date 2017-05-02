@@ -18,14 +18,14 @@ export class dataAPI {
   private serveurPostDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Upload?";
   private serveurDeleteDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Delete?rep=";
   private serveurRenameDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Rename?rep=";
-  private serveurInfoDrive: string = "";
+  private serveurInfoDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Info";
 
 
   private serveurGetDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Get?rep=";
   private serveurPostDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Upload?";
   private serveurDeleteDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Delete?rep=";
   private serveurRenameDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Rename?rep=";
-  private serveurInfoDropBox: string = "";
+  private serveurInfoDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Info";
 
 
   public mainFolder : Folder;
@@ -150,17 +150,17 @@ export class dataAPI {
   }
 
   private addInfos(files, Information, drive:string){
-    for(let typeFile of files){
-      if (drive="googleDrive"){
-
+      if (drive=="googleDrive"){
+        Information.useOnDrive = files.use;
+        Information.availableOnDrive = files.available;
       }
-      else if(drive="dropBox"){
-
+      else if(drive=="dropBox"){
+        Information.useOnDropBox = files.use;
+        Information.availableOnDropBox = files.available;
       }
       else{
         console.error("erreur d'infos du serveur");
       }
-    }
   }
 
 /*
