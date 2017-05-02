@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {dataAPI} from "../../services/dataAPI";
 import {Folder} from "../../model/Folder";
 import {AFolder} from "../../model/AFolder";
+import {Information} from "../../model/Information";
 
 @Component({
   selector: 'app-main-page',
@@ -12,6 +13,7 @@ export class MainPageComponent  {
 
   public mainFolder = new Folder("root",[], "root");
   public currentSelect = null;
+  public static information = new Information();
 
   constructor(private myApi : dataAPI){
     this.myApi.getData(this.mainFolder);
