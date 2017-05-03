@@ -8,7 +8,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Folder} from "../model/Folder";
 import {AFolder} from "../model/AFolder";
-import {Information} from "../model/Information";
 
 
 
@@ -117,10 +116,10 @@ export class dataAPI {
     this._http.put(this.serveurRenameDropBox+current.getStringPath(), put).subscribe();
   }
 
-  public getInfos(){
+  public getInfos(Information){
     this.getInfosDrive().subscribe(
       files => {
-        this.addInfos(files, "googleDrive")
+        this.addInfos(files, Information, "googleDrive")
       }, //Bind to view
       err => {
         // Log errors if any
@@ -131,7 +130,7 @@ export class dataAPI {
 
     this.getInfosDropBox().subscribe(
       files => {
-        this.addInfos(files,"dropBox")
+        this.addInfos(files, Information,"dropBox")
       }, //Bind to view
       err => {
         // Log errors if any
@@ -150,7 +149,7 @@ export class dataAPI {
       .map((res:Response) => res.json());
   }
 
-  private addInfos(files, drive:string){
+  private addInfos(files, Information, drive:string){
       if (drive=="googleDrive"){
         Information.useOnDrive = files.use;
         Information.availableOnDrive = files.available;
