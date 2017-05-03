@@ -74,3 +74,16 @@
 .glyphicon.glyphicon-folder-open {
   font-size: 25px;
 }
+
+.fa.fa-chrome {
+  font-size: 20px;
+}
+
+.fa.fa-dropbox {
+   font-size: 25px;
+ }
+
+.cellpadding {
+  padding-left: 5px;
+  padding-right: 5px;
+}

@@ -1,109 +1,112 @@
 
-<div *ngFor="let current of folder.children">
+<table>
 
+
+<div *ngFor="let current of folder.children">
+  <tr>
+
+    <td class="cellpadding">
+
+
+      <span *ngIf="current.isOnGoogle()">
+        <div class="fa fa-chrome"></div>
+      </span>
+
+      <div *ngIf="current.isOnDropBox()">
+         <div class="fa fa-dropbox"></div>
+      </div>
+
+    </td>
+
+    <!--début de la partie folder / fichiers de la table-->
+
+    <td class="cellpadding">
 
     <span *ngIf="current.isFolder()">
-      <div class="glyphicon glyphicon-folder-open" (dblclick)="current.toggle()" (click)="current.changeCurrentSelect()" (dblclick)="getData(current)" (contextmenu)="current.onRightClick($event)"> {{ current.name }}
-      </div>
 
-      <ul>
+          <div class="glyphicon glyphicon-folder-open" (dblclick)="current.toggle()" (click)="current.changeCurrentSelect()" (dblclick)="getData(current)" (contextmenu)="current.onRightClick($event)"> {{ current.name }}
+          </div>
+          <ul>
+            <div *ngIf="current.rightClick">
 
-      <div *ngIf="current.rightClick">
-
-  <div >
-    <i>
-      <!--Fonctions des Folders-->
-      <div class="row">
-        <div class="col-lg-4  ">
-            <div class="input-group">
-              <input [(ngModel)]="newNameFile" type="text" class="form-control" placeholder="Nom du fichier">
-              <span class="input-group-btn">
-                <button (click)="addFile(current, newNameFile)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter fichier</button>
-              </span>
-            </div><!-- /input-group -->
-          </div><!-- /.col-lg-6 -->
+              <div >
+                <i>
 
 
-
-
-
-        <button (click)="current.copy(current.type)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-copy"></span> Copier</button>
-
-
-
-        <button (click)="paste(current)" (click)="post(current, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-paste"></span> Coller</button>
+                  <!--Fonctions des Folders-->
+                  <div class="row">
+                    <div class="col-lg-4  ">
+                        <div class="input-group">
+                          <input [(ngModel)]="newNameFile" type="text" class="form-control" placeholder="Nom du fichier">
+                          <span class="input-group-btn">
+                            <button (click)="addFile(current, newNameFile)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter fichier</button>
+                          </span>
+                        </div><!-- /input-group -->
+                      </div><!-- /.col-lg-6 -->
+                    <button (click)="current.copy(current.type)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-copy"></span> Copier</button>
+                    <button (click)="paste(current)" (click)="post(current, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-paste"></span> Coller</button>
+                    <button (click)="cut(current, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-scissors"></span> Couper</button>
+                    <button (click)="refresh(current)" type="button" class="btn btn-info"><span class="glyphicon glyphicon-refresh"></span> Rafraîchir</button>
+                    <button (click)="delete(current, folder)" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Supprimer</button>
+                  </div>
 
 
 
-        <button (click)="cut(current, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-scissors"></span> Couper</button>
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="input-group">
+                        <input [(ngModel)]="newNameFolder" type="text" class="form-control" placeholder="Nom du dossier">
+                        <span class="input-group-btn">
+                          <button (click)="addFolder(current, newNameFolder)" (click)="post(current, folder)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter dossier</button>
+                        </span>
+                      </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                   </div>
+
+
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="input-group">
+                        <input [(ngModel)]="changeNameFolder" type="text" class="form-control" placeholder="Nouveau nom">
+                        <span class="input-group-btn">
+                          <button (click)="changeName(current, changeNameFolder)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Changer de nom</button>
+                        </span>
+                      </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                  </div>
+
+
+                </i>
+              </div>
+          </div>
+
+
+          <div *ngIf="current.expanded">
+            <app-folder [folder]="current"></app-folder>
+          </div>
+          </ul>
+        </span>
 
 
 
-        <button (click)="refresh(current)" type="button" class="btn btn-info"><span class="glyphicon glyphicon-refresh"></span> Rafraîchir</button>
+      <span *ngIf="!current.isFolder()">
+           <div class="glyphicon glyphicon-file" (click)="current.changeCurrentSelect()" (contextmenu)="current.onRightClick($event)"> {{ current.name }}</div>
+              <div *ngIf="current.rightClick">
 
+                        <!--Fonctions des Files-->
 
+              <input [(ngModel)]="changeNameFile" type=text placeholder="Nouveau nom">
+              <button (click)="changeName(current, changeNameFile)" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Changer</button>
+                  <button (click)="current.copy(current.type)" type="button" class="btn btn-success"> <span class="glyphicon glyphicon-copy"></span> Copier</button>
+                  <button (click)="cut(current, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-scissors"></span> Couper</button>
+                  <button (click)="requestSharingLink(current)" type="button" class="btn btn-info"> <span class="glyphicon glyphicon-link"></span> Lien de partage</button>
+                  <button (click)="delete(current, folder)" type="button" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Supprimer</button>
 
-        <button (click)="delete(current, folder)" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Supprimer</button>
+              </div>
+      </span>
 
-
-
-
-      </div>
-
-      <div class="row">
-
-        <div class="col-lg-4">
-          <div class="input-group">
-            <input [(ngModel)]="newNameFolder" type="text" class="form-control" placeholder="Nom du dossier">
-            <span class="input-group-btn">
-              <button (click)="addFolder(current, newNameFolder)" (click)="post(current, folder)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter dossier</button>
-            </span>
-          </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-
-       </div>
-
-      <div class="row">
-
-        <div class="col-lg-4">
-          <div class="input-group">
-            <input [(ngModel)]="changeNameFolder" type="text" class="form-control" placeholder="Nouveau nom">
-            <span class="input-group-btn">
-              <button (click)="changeName(current, changeNameFolder)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Changer de nom</button>
-            </span>
-          </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-
-      </div>
-
-
-    </i>
-  </div>
-
-<br>
-
-      </div>
-
-      <div *ngIf="current.expanded">
-        <app-folder [folder]="current"></app-folder>
-      </div>
-      </ul>
-    </span>
-
-    <span *ngIf="!current.isFolder()">
-       <div class="glyphicon glyphicon-file" (click)="current.changeCurrentSelect()" (contextmenu)="current.onRightClick($event)"> {{ current.name }}</div>
-      <div *ngIf="current.rightClick">
-
-                <!--Fonctions des Files-->
-
-    <input [(ngModel)]="changeNameFile" type=text placeholder="Nouveau nom">
-    <button (click)="changeName(current, changeNameFile)" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Changer</button>
-        <button (click)="current.copy(current.type)" type="button" class="btn btn-success"> <span class="glyphicon glyphicon-copy"></span> Copier</button>
-        <button (click)="cut(current, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-scissors"></span> Couper</button>
-        <button (click)="requestSharingLink(current)" type="button" class="btn btn-info"> <span class="glyphicon glyphicon-link"></span> Lien de partage</button>
-        <button (click)="delete(current, folder)" type="button" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Supprimer</button>
-
-    </div>
-    </span>
-
+      <!--fin de la table des folders / files -->
+      </td>
+  </tr>
 </div>
+</table>
