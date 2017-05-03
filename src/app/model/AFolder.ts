@@ -67,6 +67,7 @@ export abstract class AFolder {
 
   onRightClick() {
     this.rightClick= !this.rightClick;
+    console.log(this.name+"  "+this.id);
     return false;
   }
 
@@ -103,5 +104,5 @@ export abstract class AFolder {
   share(email : string) {
   console.log(email);
   }
-
 }
+

@@ -47,7 +47,9 @@ export class FolderComponent {
 
   paste(father:Folder){
     father.paste(father.path);
-    this.post(AFolder.currentCopy, father);
+    if(AFolder.currentCopy != null) {
+      this.post(AFolder.currentCopy, father);
+    }
   }
 
   getData(folder){

@@ -14,18 +14,16 @@ export class MainPageComponent  {
 
   public mainFolder = new Folder("root",[], "root");
   public currentSelect = null;
-  public information:Information = null;
 
   constructor(private myApi : dataAPI){
     this.myApi.getData(this.mainFolder);
-    this.information = new Information();
     this.refreshInfos();
   }
 
   refreshInfos(){
-    this.myApi.getInfos(this.information);
-    console.log("Drive ::: use : " + this.information.useOnDrive+" available : "+this.information.availableOnDrive);
-    console.log("DropBox ::: use : " + this.information.useOnDropBox+" available : "+this.information.availableOnDropBox);
+    this.myApi.getInfos();
+    console.log("Drive ::: use : " + Information.useOnDrive+" available : "+Information.availableOnDrive);
+    console.log("DropBox ::: use : " + Information.useOnDropBox+" available : "+Information.availableOnDropBox);
   }
 
   refresh(folder){
@@ -46,12 +44,13 @@ export class MainPageComponent  {
   addFile(current:Folder, name:string){
     current.addFile(name);
     this.post(current.getLastChildren(), current);
-
+    this.refreshInfos()
   }
 
   addFolder(current:Folder, name:string){
     current.addFolder(name);
     this.post(current.getLastChildren(), current);
+    this.refreshInfos()
   }
 
   post(current:AFolder, father:Folder){
@@ -69,3 +68,4 @@ export class MainPageComponent  {
     folder.load=true;
   }
 }
+
