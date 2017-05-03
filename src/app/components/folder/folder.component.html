@@ -1,11 +1,11 @@
 
-<table>
+<table width="100%">
 
 
   <div *ngFor="let current of folder.children">
     <tr>
 
-      <td class="cellpadding">
+      <td class="cellpadding" width="5%">
 
 
       <span *ngIf="current.isOnGoogle()">
@@ -20,7 +20,7 @@
 
       <!--début de la partie folder / fichiers de la table-->
 
-      <td class="cellpadding">
+      <td class="cellpadding" width="91%">
 
     <span *ngIf="current.isFolder()">
 
@@ -106,6 +106,10 @@
       </span>
 
         <!--fin de la table des folders / files -->
+      </td>
+
+      <td class="cellpadding" width="4%">
+        {{current._size}} Ko
       </td>
     </tr>
   </div>
