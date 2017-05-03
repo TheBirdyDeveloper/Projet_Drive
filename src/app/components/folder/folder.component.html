@@ -2,25 +2,25 @@
 <table>
 
 
-<div *ngFor="let current of folder.children">
-  <tr>
+  <div *ngFor="let current of folder.children">
+    <tr>
 
-    <td class="cellpadding">
+      <td class="cellpadding">
 
 
       <span *ngIf="current.isOnGoogle()">
         <div class="fa fa-chrome"></div>
       </span>
 
-      <div *ngIf="current.isOnDropBox()">
-         <div class="fa fa-dropbox"></div>
-      </div>
+        <div *ngIf="current.isOnDropBox()">
+          <div class="fa fa-dropbox"></div>
+        </div>
 
-    </td>
+      </td>
 
-    <!--début de la partie folder / fichiers de la table-->
+      <!--début de la partie folder / fichiers de la table-->
 
-    <td class="cellpadding">
+      <td class="cellpadding">
 
     <span *ngIf="current.isFolder()">
 
@@ -89,7 +89,7 @@
 
 
 
-      <span *ngIf="!current.isFolder()">
+        <span *ngIf="!current.isFolder()">
            <div class="glyphicon glyphicon-file" (click)="current.changeCurrentSelect()" (contextmenu)="current.onRightClick($event)"> {{ current.name }}</div>
               <div *ngIf="current.rightClick">
 
@@ -105,8 +105,8 @@
               </div>
       </span>
 
-      <!--fin de la table des folders / files -->
+        <!--fin de la table des folders / files -->
       </td>
-  </tr>
-</div>
+    </tr>
+  </div>
 </table>

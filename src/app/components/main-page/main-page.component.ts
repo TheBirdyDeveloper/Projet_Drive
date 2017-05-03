@@ -14,7 +14,7 @@ export class MainPageComponent  {
 
   public mainFolder = new Folder("root",[], "root");
   public currentSelect = null;
-  information = new Information();
+  public information:Information = new Information();
 
   constructor(private myApi : dataAPI){
     this.myApi.getData(this.mainFolder);
@@ -22,7 +22,11 @@ export class MainPageComponent  {
   }
 
   refreshInfos(){
-    this.myApi.getInfos();
+    console.log("Drive ::: use : " + this.information.useOnDrive+" available : "+this.information.availableOnDrive);
+    console.log("DropBox ::: use : " + this.information.useOnDropBox+" available : "+this.information.availableOnDropBox);
+    this.myApi.getInfos(this.information);
+    console.log("Drive ::: use : " + this.information.useOnDrive+" available : "+this.information.availableOnDrive);
+    console.log("DropBox ::: use : " + this.information.useOnDropBox+" available : "+this.information.availableOnDropBox);
   }
 
   refresh(folder){
