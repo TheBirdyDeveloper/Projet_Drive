@@ -94,3 +94,13 @@ table td {
   border-left: 1px solid #000;
   border-right: 1px solid #000;
 }
+
+.shareLink {
+  -webkit-tap-highlight-color:blue;
+  -webkit-touch-callout: default;
+  -webkit-user-select: text;
+/*-khtml-user-select: none;*/
+  -moz-user-select: text;
+  user-select: text;
+}
+

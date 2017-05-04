@@ -99,4 +99,8 @@ export class FolderComponent {
 
   }
 
+  setSaving(element, text){
+    element.textContent = text;
+  }
+
 }

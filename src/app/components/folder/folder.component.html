@@ -6,6 +6,8 @@
   Upload <input type="file" style="display: none;">
 </label>
 
+
+
 <table width="100%">
 
   <tr>
@@ -114,6 +116,7 @@
                   <button (click)="cut(current, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-scissors"></span> Couper</button>
                   <button (click)="requestSharingLink(current)" type="button" class="btn btn-info"> <span class="glyphicon glyphicon-link"></span> Lien de partage</button>
                   <button (click)="delete(current, folder)" type="button" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Supprimer</button>
+                   <button (click)="setSaving($event.target, 'lien de partage')" class="btn btn-default btn-primary shareLink"><span class="glyphicon glyphicon-share"></span> Lien de partage</button>
 
               </div>
       </span>
@@ -124,8 +127,16 @@
 
       <td class="cellpadding" width="10%">
         <span *ngIf="!current.isFolder()">
-        {{current._size}}
-             </span>
+          <span *ngIf="!current._size === null">
+           <span *ngIf="current.isOnGoogle()">
+              {{current._size}}Ko
+           </span>
+           <span *ngIf="current.isOnDropBox()">
+              {{current._size}}
+           </span>
+          </span>
+
+        </span>
       </td>
 
 

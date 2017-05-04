@@ -70,5 +70,8 @@ export class MainPageComponent  {
     this.myApi.getData(folder);
     folder.load=true;
   }
+
+
+
 }
 
