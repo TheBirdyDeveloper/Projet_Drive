@@ -124,17 +124,15 @@
 
 
       <td class="cellpadding"  width="5%">
-        <span *ngIf="current.rights">
-          <span class="glyphicon glyphicon-edit"></span>
+        <span *ngIf="(current.rights)">
+         {{current.rights}}
         </span>
-
       </td>
 
       <td class="cellpadding"  width="5%">
-        <span *ngIf="current.isShared">
-          <span class="glyphicon glyphicon-share"></span>
+        <span *ngIf="(current.isShared)">
+          {{current.isShared}}
         </span>
-
       </td>
     </tr>
 
