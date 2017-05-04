@@ -96,7 +96,7 @@ table td {
 }
 
 .shareLink {
-  -webkit-tap-highlight-color:blue;
+  -webkit-tap-highlight-color:red;
   -webkit-touch-callout: default;
   -webkit-user-select: text;
 /*-khtml-user-select: none;*/
