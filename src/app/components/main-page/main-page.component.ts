@@ -17,7 +17,8 @@ export class MainPageComponent  {
   public information:Information = new Information();
 
   constructor(private myApi : dataAPI){
-    this.myApi.getData(this.mainFolder);
+    this.myApi.getDataOnDrive(this.mainFolder);
+    this.myApi.getDataOnDropBox(this.mainFolder);
     this.refreshInfos();
   }
 
@@ -40,7 +41,7 @@ export class MainPageComponent  {
   }
 
   paste(father:Folder){
-    if(AFolder.currentCopy != null) {
+    if(AFolder.currentCopy !== null) {
       if (father.isOnGoogle()&&AFolder.currentCopy.isOnGoogle()) {
         this.myApi.moveDrive(AFolder.currentCopy, father);
       }
@@ -48,10 +49,21 @@ export class MainPageComponent  {
         this.myApi.moveDropBox(AFolder.currentCopy, father);
       }
       father.load = false;
-      this.getData(father);
+      this.delete(AFolder.currentCopy, father);
+      this.refresh(father);
     }
     else {
       console.error("No current copy");
+    }
+  }
+
+  delete(child:AFolder, father){
+
+    if(child.isOnGoogle()) {
+      this.myApi.deleteDataDrive(child);
+    }
+    if(child.isOnDropBox()) {
+      this.myApi.deleteDataDropBox(child);
     }
   }
 
@@ -77,8 +89,9 @@ export class MainPageComponent  {
       return;
     }
     folder.refresh();
+      this.myApi.getDataOnDrive(folder);
+      this.myApi.getDataOnDropBox(folder);
 
-    this.myApi.getData(folder);
     folder.load=true;
   }
 

@@ -48,7 +48,8 @@ export abstract class AFolder {
   copy(type:string){
     AFolder.currentCopy = this;
     AFolder.currentCopy.type = type;
-    //AFolder.currentCopy.path = AFolder.currentCopy.path.slice();
+    AFolder.currentCopy.path = AFolder.currentCopy.path.slice();
+    AFolder.currentCopy.drivers = AFolder.currentCopy.drivers.slice();
   }
 
   // cut(type:string, father: AFolder){
@@ -68,7 +69,7 @@ export abstract class AFolder {
 
   onRightClick() {
     this.rightClick= !this.rightClick;
-    console.log(this.name+"  "+this.id);
+    console.log(this.name+"  "+this.path);
     return false;
   }
 
