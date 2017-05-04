@@ -111,7 +111,7 @@ export class dataAPI {
   }
 
   changeNameDropBox(current:AFolder, name:string){
-    this._http.post(this.serveurRenameDropBox+"old="+current.getStringPath()+"&new="+current.getPathFather()+"/"+name, null).subscribe();
+    this._http.post(this.serveurRenameDropBox+"old="+current.getStringPath()+"&new="+current.getPathFather()+name, null).subscribe();
   }
 
   public getInfos(Information){
@@ -185,7 +185,7 @@ export class dataAPI {
 
       if(typeFile.type == "file"){
         console.log(typeFile);
-          currentFolder.addFileGetRequest(typeFile.name, typeFile.size, typeFile.id);
+          currentFolder.addFileGetRequest(typeFile.name, typeFile.size, typeFile.share, typeFile.download, typeFile.id);
           currentFolder.getLastChildren().drivers.push(driver);
         }
 

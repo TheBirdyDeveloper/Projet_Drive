@@ -95,11 +95,8 @@ export abstract class AFolder {
     let path ="";
     for (let current of this.path){
       if (current=="root" || current==this.name){}
-      else if (path!="") {
-        path += "/"+current;
-      }
       else{
-        path += current;
+        path += current+"/";
       }
     }
     return path;

@@ -77,9 +77,9 @@ export class Folder extends AFolder {
     this.children = this.children.slice();
   }
 
-  addFileGetRequest(child: string, size:number, id:string = null, path: string[] = this.path) {
+  addFileGetRequest(child: string, size:number, shareLink:string="", downloadLink:string="", id:string = null, path: string[] = this.path) {
     path = path.slice();
-    this.children.push(new File(child, path, size, id));
+    this.children.push(new File(child, path, size, shareLink, downloadLink, id));
     this.children = this.children.slice();
   }
 
