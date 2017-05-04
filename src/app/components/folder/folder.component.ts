@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Folder} from "../../model/Folder";
 import {dataAPI} from "../../services/dataAPI";
 import {AFolder} from "../../model/AFolder";
+import {File} from "../../model/File";
 
 @Component({
   selector: 'app-folder',
@@ -99,8 +100,8 @@ export class FolderComponent {
 
   }
 
-  setSaving(element, text){
-    element.textContent = text;
+  setSaving(element, file:File){
+    element.textContent = file.shareLink;
   }
 
 }
