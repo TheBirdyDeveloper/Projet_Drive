@@ -40,8 +40,19 @@ export class MainPageComponent  {
   }
 
   paste(father:Folder){
-    father.paste(father.path);
-    this.post(AFolder.currentCopy, father);
+    if(AFolder.currentCopy != null) {
+      if (father.isOnGoogle()&&AFolder.currentCopy.isOnGoogle()) {
+        this.myApi.moveDrive(AFolder.currentCopy, father);
+      }
+      if (father.isOnDropBox()&&AFolder.currentCopy.isOnDropBox()) {
+        this.myApi.moveDropBox(AFolder.currentCopy, father);
+      }
+      father.load = false;
+      this.getData(father);
+    }
+    else {
+      console.error("No current copy");
+    }
   }
 
   addFile(current:Folder, name:string){

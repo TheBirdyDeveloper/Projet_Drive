@@ -19,6 +19,7 @@ export class dataAPI {
   private serveurDeleteDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Delete?rep=";
   private serveurRenameDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Rename?id=";
   private serveurInfoDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Info";
+  private serveurmoveDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Move";
 
 
   private serveurGetDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Get?rep=";
@@ -26,6 +27,8 @@ export class dataAPI {
   private serveurDeleteDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Delete?rep=";
   private serveurRenameDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Rename?";
   private serveurInfoDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Info";
+  private serveurMoveDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Move";
+
 
 
   public mainFolder : Folder;
@@ -159,6 +162,14 @@ export class dataAPI {
       else{
         console.error("erreur d'infos du serveur");
       }
+  }
+
+  public moveDrive(copy:AFolder, father:AFolder){
+
+  }
+
+  public moveDropBox(copy:AFolder, father:AFolder){
+
   }
 
 /*

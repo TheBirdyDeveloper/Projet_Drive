@@ -23,13 +23,13 @@ export class FolderComponent {
 
   cut (current:AFolder, father:Folder){
     current.copy(current.type);
-    this.delete(current, father);
+    current.delete(father);
+    //this.delete(current, father);
   }
 
   addFile(current:Folder, name:string){
     current.addFile(name);
     this.post(current.getLastChildren(), current);
-
   }
 
   addFolder(current:Folder, name:string){
@@ -48,9 +48,19 @@ export class FolderComponent {
   }
 
   paste(father:Folder){
-    father.paste(father.path);
+
     if(AFolder.currentCopy != null) {
-      this.post(AFolder.currentCopy, father);
+      if (father.isOnGoogle()&&AFolder.currentCopy.isOnGoogle()) {
+        this.myApi.moveDrive(AFolder.currentCopy, father);
+      }
+      if (father.isOnDropBox()&&AFolder.currentCopy.isOnDropBox()) {
+        this.myApi.moveDropBox(AFolder.currentCopy, father);
+      }
+      father.load = false;
+      this.refresh(father);
+    }
+    else {
+      console.error("No current copy");
     }
   }
 
