@@ -9,8 +9,8 @@ export class Folder extends AFolder {
   expanded = false;
   private _load:boolean;
 
-  constructor(name, pathLastFolder, size = 0, rights = false, isShared = false, id = null) {
-    super(name, pathLastFolder, size, rights, isShared, id);
+  constructor(name, pathLastFolder, size = 0, isRights, isShared, id = null) {
+    super(name, pathLastFolder, size, isRights, isShared, id);
     this.children = [];
     this.type = "folder";
     this._load = false;
@@ -57,7 +57,7 @@ export class Folder extends AFolder {
 
   addFolder(child: string, id:string = null, path: string[] = this.path) {
     path = path.slice();
-    this.children.push(new Folder(child, path, 0, false, false, id));
+    this.children.push(new Folder(child, path, 0, "", "", id));
     this.children = this.children.slice();
     this.getLastChildren().drivers = this.drivers;
     this.getLastChildren().drivers = this.getLastChildren().drivers.slice();
@@ -65,15 +65,15 @@ export class Folder extends AFolder {
 
   addFile(child: string, id:string = null, path: string[] = this.path) {
     path = path.slice();
-    this.children.push(new File(child, path, 0, "", "", false, false, id));
+    this.children.push(new File(child, path, 0, "", "", "", "", id));
     this.children = this.children.slice();
     this.getLastChildren().drivers = this.drivers;
     this.getLastChildren().drivers = this.getLastChildren().drivers.slice();
   }
 
-  addFolderGetRequest(child: string, size:number = 0, rights, isShared, id:string = null, path: string[] = this.path) {
+  addFolderGetRequest(child: string, size:number = 0, isRights, isShared, id:string = null, path: string[] = this.path) {
     path = path.slice();
-    this.children.push(new Folder(child, path, size, rights, isShared,id));
+    this.children.push(new Folder(child, path, size, isRights, isShared, id));
     this.children = this.children.slice();
   }
 

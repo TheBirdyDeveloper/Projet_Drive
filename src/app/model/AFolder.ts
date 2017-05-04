@@ -1,7 +1,9 @@
+
 /**
  * Created by Clément on 11/04/2017.
  */
 export abstract class AFolder {
+
   name : string;
   type : string;
   children : AFolder[];
@@ -10,15 +12,14 @@ export abstract class AFolder {
   id : string;
   _size: number = 0;
   drivers: string[] = [];
-  rights: boolean = false;
-  isShared:boolean = false;
   content:string;
-
+  isRights:boolean;
+  isShared:boolean;
 
   public static currentCopy : AFolder = null;
   public static currentSelect : AFolder = null;
 
-  constructor(name, pathLastFolder, size = 0, rights = false, isShared = false, id = null) {
+  constructor(name, pathLastFolder, size = 0, isRights="", isShared="", id = null) {
     this.name = name;
     this.path = pathLastFolder;
     this.path=this.path.slice();
@@ -26,8 +27,13 @@ export abstract class AFolder {
     this.rightClick = false;
     this.id = id;
     this._size = size;
-    this.rights = rights;
-    this.isShared = isShared;
+    if (isRights=="true"){
+      this.isRights=true;
+    }
+    if (isShared=="true"){
+      this.isShared=true;
+    }
+
   }
 
   changeCurrentSelect(){
@@ -72,7 +78,6 @@ export abstract class AFolder {
 
   onRightClick() {
     this.rightClick= !this.rightClick;
-    console.log(this.name+"  "+this.path);
     return false;
   }
 
@@ -115,10 +120,6 @@ export abstract class AFolder {
       }
     }
     return path;
-  }
-
-  share(email : string) {
-  console.log(email);
   }
 }
 

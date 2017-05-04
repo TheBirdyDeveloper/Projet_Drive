@@ -98,7 +98,7 @@
                   <button (click)="getShareLink($event.target, current)" type="button" class="btn btn-info shareLink"> <span class="glyphicon glyphicon-link"></span> Lien de partage</button>
                   <button (click)="delete(current, folder)" type="button" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Supprimer</button>
                  <span *ngIf="(current._size !== null) ">
-                <button type="button" class="btn btn-warning"> <span class="glyphicon glyphicon-download"></span> <a [attr.href]="current.downloadLink" download>Download</a></button>
+                <button (click)="download(current)" type="button" class="btn btn-warning"> <span class="glyphicon glyphicon-download"></span> <a [attr.href]="current.downloadLink" download>Download</a></button>
                  </span>
 
               </div>
@@ -122,16 +122,15 @@
         </span>
       </td>
 
-
-      <td class="cellpadding"  width="5%">
-        <span *ngIf="(current.rights)">
-         {{current.rights}}
+      <td class="cellpadding"  width="7%">
+        <span *ngIf="current.isRights">
+          <span class="glyphicon glyphicon-edit"></span>
         </span>
       </td>
 
       <td class="cellpadding"  width="5%">
-        <span *ngIf="(current.isShared)">
-          {{current.isShared}}
+        <span *ngIf="current.isShared">
+          <span class="glyphicon glyphicon-share"></span>
         </span>
       </td>
     </tr>

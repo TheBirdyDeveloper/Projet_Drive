@@ -117,7 +117,11 @@ export class FolderComponent {
   }
 
   getShareLink(element, file:File){
-    element.textContent = file.shareLink;
+    if (file.isOnDropBox()){
+      this.myApi.getShareDropBox(file);
+    };
+
+    setTimeout(() => element.textContent = file.shareLink, 800);
   }
 
   upload(event, current) {
@@ -133,4 +137,10 @@ export class FolderComponent {
     this.refresh(current);
   }
 
+  download(file:File){
+    if (file.isOnDropBox){
+      this.myApi.getDownloadDropBox(file);
+      setTimeout({},1000);
+    }
+  }
 }

@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Folder} from "../model/Folder";
 import {AFolder} from "../model/AFolder";
+import {File} from "../model/File";
 
 
 
@@ -28,10 +29,10 @@ export class dataAPI {
   private serveurRenameDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Rename?";
   private serveurInfoDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Info";
   private serveurMoveDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Move?";
+  private serveurShareDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Share?rep=";
+  private serveurDownloadDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Download?rep=";
 
 
-
-  public mainFolder : Folder;
 
   constructor(private _http: Http) {}
 
@@ -73,7 +74,6 @@ export class dataAPI {
 }
 
   public postDataDrive(current:AFolder, father:Folder){
-  console.log("POSTDrive");
     if(father.getStringPath()!="") {
       this._http.post(this.serveurPostDrive + "name=" + current.name + "&parent=" + father.id, null).subscribe(files => {
         this.addId(files, current)
@@ -87,7 +87,6 @@ export class dataAPI {
 }
 
   public postDataDropBox(current:AFolder, father:Folder){ //A modifier !!!
-    console.log("POSTDrop");
     if(father.getStringPath()!="") {
       this._http.post(this.serveurPostDropBox + "path=" + father.getStringPath() +"/"+ current.name, null).subscribe();
     }
@@ -167,19 +166,26 @@ export class dataAPI {
   }
 
   public moveDrive(copy:AFolder, father:AFolder){
-    console.log("moveDrive : "+this.serveurMoveDrive + "id=" +copy.id + "&idn=" + father.id)
       this._http.post(this.serveurMoveDrive + "id=" +copy.id + "&idn=" + father.id, null).subscribe();
   }
 
   public moveDropBox(copy:AFolder, father:AFolder){
     if(father.getStringPath()!="") {
-      console.log("moveDrop1 : "+this.serveurMoveDropBox + "old=" + copy.getStringPath() +"&new="+ father.getStringPath()+"/"+copy.name)
       this._http.post(this.serveurMoveDropBox + "old=" + copy.getStringPath() +"&new="+ father.getStringPath()+"/"+copy.name, null).subscribe();
     }
     else{
-      console.log("moveDrop2 : "+this.serveurMoveDropBox + "old=" + copy.getStringPath() + "&new="+copy.name)
       this._http.post(this.serveurMoveDropBox + "old=" + copy.getStringPath() + "&new="+copy.name, null).subscribe();
     }
+  }
+
+  public getShareDropBox(current:AFolder){
+      this._http.get(this.serveurShareDropBox + current.getStringPath()).subscribe(share => {
+        this.addShare(share, current)
+      });
+  }
+
+  addShare(share, current:AFolder){
+    (<File>current).shareLink=share._body;
   }
 
 /*
@@ -254,6 +260,16 @@ export class dataAPI {
     else{
       this._http.post(this.serveurPostDropBox + "path=" + father.getStringPath() + files[0].name, files[0]).subscribe();
     }
+  }
+
+  public getDownloadDropBox(current:AFolder){
+    this._http.get(this.serveurDownloadDropBox + "/"+current.getStringPath()).subscribe(share => {
+      this.addDownload(share, current)
+    });
+  }
+
+  addDownload(share, current:AFolder){
+    (<File>current).shareLink=share._body;
   }
 
 }

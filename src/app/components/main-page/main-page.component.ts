@@ -12,7 +12,7 @@ import {Information} from "../../model/Information";
 
 export class MainPageComponent  {
 
-  public mainFolder = new Folder("root",[], 0, false, false, "root");
+  public mainFolder = new Folder("root",[], 0, "","", "root");
   public currentSelect = null;
   public information:Information = new Information();
 
@@ -23,11 +23,7 @@ export class MainPageComponent  {
   }
 
   refreshInfos(){
-    console.log("Drive ::: use : " + this.information.useOnDrive+" available : "+this.information.availableOnDrive);
-    console.log("DropBox ::: use : " + this.information.useOnDropBox+" available : "+this.information.availableOnDropBox);
     this.myApi.getInfos(this.information);
-    console.log("Drive ::: use : " + this.information.useOnDrive+" available : "+this.information.availableOnDrive);
-    console.log("DropBox ::: use : " + this.information.useOnDropBox+" available : "+this.information.availableOnDropBox);
   }
 
   refresh(folder){
