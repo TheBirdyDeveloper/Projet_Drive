@@ -17,13 +17,14 @@ export abstract class AFolder {
   public static currentCopy : AFolder = null;
   public static currentSelect : AFolder = null;
 
-  constructor(name, pathLastFolder, id = null) {
+  constructor(name, pathLastFolder, size = 0, id = null) {
     this.name = name;
     this.path = pathLastFolder;
     this.path=this.path.slice();
     this.path.push(name);
     this.rightClick = false;
     this.id = id;
+    this._size = size;
   }
 
   changeCurrentSelect(){
@@ -80,6 +81,20 @@ export abstract class AFolder {
     let path ="";
     for (let current of this.path){
       if (current=="root"){}
+      else if (path!="") {
+        path += "/"+current;
+      }
+      else{
+        path += current;
+      }
+    }
+    return path;
+  }
+
+  getPathFather(){
+    let path ="";
+    for (let current of this.path){
+      if (current=="root" || current==this.name){}
       else if (path!="") {
         path += "/"+current;
       }

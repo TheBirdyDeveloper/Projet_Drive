@@ -12,7 +12,7 @@ import {Information} from "../../model/Information";
 
 export class MainPageComponent  {
 
-  public mainFolder = new Folder("root",[], "root");
+  public mainFolder = new Folder("root",[], 0, "root");
   public currentSelect = null;
   public information:Information = new Information();
 

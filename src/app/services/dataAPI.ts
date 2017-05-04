@@ -17,14 +17,14 @@ export class dataAPI {
   private serveurGetDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Get?rep=";
   private serveurPostDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Upload?";
   private serveurDeleteDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Delete?rep=";
-  private serveurRenameDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Rename?rep=";
+  private serveurRenameDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Rename?id=";
   private serveurInfoDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Info";
 
 
   private serveurGetDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Get?rep=";
   private serveurPostDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Upload?";
   private serveurDeleteDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Delete?rep=";
-  private serveurRenameDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Rename?rep=";
+  private serveurRenameDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Rename?";
   private serveurInfoDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Info";
 
 
@@ -107,13 +107,11 @@ export class dataAPI {
   }
 
   changeNameDrive(current:AFolder, name:string){
-    var put = JSON.stringify({"newName" : name,"id":current.id});
-    this._http.put(this.serveurRenameDrive+current.id, put).subscribe();
+    this._http.post(this.serveurRenameDrive+current.id+"&name="+name, null).subscribe();
   }
 
   changeNameDropBox(current:AFolder, name:string){
-    var put = JSON.stringify({"newName" : name,"path":current.getStringPath()});
-    this._http.put(this.serveurRenameDropBox+current.getStringPath(), put).subscribe();
+    this._http.post(this.serveurRenameDropBox+"old="+current.getStringPath()+"&new=/"+current.getPathFather()+name, null).subscribe();
   }
 
   public getInfos(Information){
@@ -186,7 +184,8 @@ export class dataAPI {
     for(let typeFile of children.liste){
 
       if(typeFile.type == "file"){
-          currentFolder.addFileGetRequest(typeFile.name, typeFile.id);
+        console.log(typeFile);
+          currentFolder.addFileGetRequest(typeFile.name, typeFile.size, typeFile.id);
           currentFolder.getLastChildren().drivers.push(driver);
         }
 
@@ -208,7 +207,7 @@ export class dataAPI {
           }
         }
         else {
-          currentFolder.addFolderGetRequest(typeFile.name, typeFile.id);
+          currentFolder.addFolderGetRequest(typeFile.name, typeFile.size, typeFile.id);
           currentFolder.getLastChildren().drivers.push(driver);
         }
       }

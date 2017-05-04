@@ -85,7 +85,7 @@ export class FolderComponent {
   }
 
   changeName(current:AFolder, name:string){
-    current.changeName(name);
+
 
     if(current.isOnGoogle()) {
       this.myApi.changeNameDrive(current, name);
@@ -94,6 +94,8 @@ export class FolderComponent {
     if(current.isOnDropBox()) {
       this.myApi.changeNameDropBox(current, name);
     }
+
+    current.changeName(name);
 
   }
 
