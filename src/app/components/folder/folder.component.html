@@ -130,10 +130,10 @@
         <span *ngIf="!current.isFolder()">
           <span *ngIf="!(current._size === null) ">
            <span *ngIf="current.isOnGoogle()">
-              {{current._size}}Ko
+              {{current._size /1024 | number : "1.1-1"}} Kb
            </span>
            <span *ngIf="current.isOnDropBox()">
-              {{current._size}}
+              {{current._size /1024 | number : "1.1-1"}} Kb
            </span>
           </span>
 
