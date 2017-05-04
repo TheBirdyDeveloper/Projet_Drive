@@ -100,7 +100,7 @@ export class FolderComponent {
 
   }
 
-  setSaving(element, file:File){
+  getShareLink(element, file:File){
     element.textContent = file.shareLink;
   }
 

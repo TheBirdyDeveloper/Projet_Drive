@@ -114,12 +114,11 @@
               <button (click)="changeName(current, changeNameFile)" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Changer</button>
                   <button (click)="current.copy(current.type)" type="button" class="btn btn-success"> <span class="glyphicon glyphicon-copy"></span> Copier</button>
                   <button (click)="cut(current, folder)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-scissors"></span> Couper</button>
-                  <button (click)="requestSharingLink(current)" type="button" class="btn btn-info"> <span class="glyphicon glyphicon-link"></span> Lien de partage</button>
+                  <button (click)="getShareLink($event.target, current)" type="button" class="btn btn-info shareLink"> <span class="glyphicon glyphicon-link"></span> Lien de partage</button>
                   <button (click)="delete(current, folder)" type="button" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Supprimer</button>
-                   <button (click)="setSaving($event.target, current)" class="btn btn-default btn-warning shareLink"><span class="glyphicon glyphicon-share"></span> Lien de partage</button>
-
-                <button (click)="delete(current, folder)" type="button" class="btn btn-warning"> <span class="glyphicon glyphicon-download"></span> <a [attr.href]="current.downloadLink" download>Download</a></button>
-
+                 <span *ngIf="!(current._size === null) ">
+                <button type="button" class="btn btn-warning"> <span class="glyphicon glyphicon-download"></span> <a [attr.href]="current.downloadLink" download>Download</a></button>
+                 </span>
 
 
               </div>
