@@ -1,9 +1,22 @@
 
+
+
+
+<label class="btn btn-default btn-file btn-primary">
+  Upload <input type="file" style="display: none;">
+</label>
+
 <table width="100%">
 
+  <tr>
+    <th>Drive</th>
+    <th>Nom</th>
+    <th>Taille</th>
+    <th>Droits</th>
+  </tr>
 
-  <div *ngFor="let current of folder.children">
-    <tr>
+
+    <tr *ngFor="let current of folder.children">
 
       <td class="cellpadding" width="5%">
 
@@ -20,7 +33,7 @@
 
       <!--début de la partie folder / fichiers de la table-->
 
-      <td class="cellpadding" width="91%">
+      <td class="cellpadding" width="75%">
 
     <span *ngIf="current.isFolder()">
 
@@ -108,9 +121,13 @@
         <!--fin de la table des folders / files -->
       </td>
 
-      <td class="cellpadding" width="4%">
+      <td class="cellpadding" width="10%">
         {{current._size}} Ko
       </td>
+
+      <td class="cellpadding"  width="10%">
+        {{current.rights}}
+      </td>
     </tr>
-  </div>
+
 </table>

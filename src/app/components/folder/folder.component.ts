@@ -16,6 +16,7 @@ export class FolderComponent {
   @Input() folder:Folder;
 
 
+
   constructor(private myApi : dataAPI) {
   }
 

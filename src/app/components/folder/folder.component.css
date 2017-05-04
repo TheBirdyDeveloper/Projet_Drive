@@ -77,13 +77,20 @@
 
 .fa.fa-chrome {
   font-size: 20px;
+  color: red;
 }
 
 .fa.fa-dropbox {
   font-size: 20px;
+  color: blue;
 }
 
 .cellpadding {
   padding-left: 5px;
   padding-right: 5px;
+}
+
+table td {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
 }
