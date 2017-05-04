@@ -4,7 +4,7 @@
     <th>Drive</th>
     <th>Nom</th>
     <th>Taille</th>
-    <th>Editable</th>
+    <th>Droit</th>
     <th>Partage</th>
   </tr>
 
@@ -124,11 +124,17 @@
 
 
       <td class="cellpadding"  width="5%">
-        {{current.rights}}
+        <span *ngIf="current.rights">
+          <span class="glyphicon glyphicon-edit"></span>
+        </span>
+
       </td>
 
-      <td class="cellpadding"  width="5s%">
-        {{current.isShared}}
+      <td class="cellpadding"  width="5%">
+        <span *ngIf="current.isShared">
+          <span class="glyphicon glyphicon-share"></span>
+        </span>
+
       </td>
     </tr>
 
