@@ -127,7 +127,7 @@
 
       <td class="cellpadding" width="10%">
         <span *ngIf="!current.isFolder()">
-          <span *ngIf="!current._size === null">
+          <span *ngIf="!(current._size === null || current._size === 0) ">
            <span *ngIf="current.isOnGoogle()">
               {{current._size}}Ko
            </span>
