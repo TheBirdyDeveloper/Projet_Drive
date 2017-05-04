@@ -121,9 +121,13 @@
         <!--fin de la table des folders / files -->
       </td>
 
+
       <td class="cellpadding" width="10%">
+        <span *ngIf="!current.isFolder()">
         {{current._size}} Ko
+             </span>
       </td>
+
 
       <td class="cellpadding"  width="10%">
         {{current.rights}}
