@@ -19,7 +19,7 @@ export class dataAPI {
   private serveurDeleteDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Delete?rep=";
   private serveurRenameDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Rename?id=";
   private serveurInfoDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Info";
-  private serveurmoveDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Move";
+  private serveurMoveDrive: string = "http://localhost:8080/drive-service/rest/googleDrive/Move?";
 
 
   private serveurGetDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Get?rep=";
@@ -27,7 +27,7 @@ export class dataAPI {
   private serveurDeleteDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Delete?rep=";
   private serveurRenameDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Rename?";
   private serveurInfoDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Info";
-  private serveurMoveDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Move";
+  private serveurMoveDropBox: string = "http://localhost:8080/drive-service/rest/DropBox/Move?";
 
 
 
@@ -46,18 +46,19 @@ export class dataAPI {
   }
 
 
-  public getData(mainFolder){
-    this.mainFolder = mainFolder;
-      this.getDataDrive(mainFolder.id).subscribe(
-        files => {
-          this.addData(files, mainFolder, "googleDrive")
-        }, //Bind to view
-        err => {
-          // Log errors if any
-          console.log(err);
+  public getDataOnDrive(mainFolder) {
+    this.getDataDrive(mainFolder.id).subscribe(
+      files => {
+        this.addData(files, mainFolder, "googleDrive")
+      }, //Bind to view
+      err => {
+        // Log errors if any
+        console.log(err);
 
-        });
+      });
+  }
 
+  public getDataOnDropBox(mainFolder) {
 
     this.getDataDropBox(mainFolder.getStringPath()).subscribe(
       files => {
@@ -165,11 +166,19 @@ export class dataAPI {
   }
 
   public moveDrive(copy:AFolder, father:AFolder){
-
+    console.log("moveDrive : "+this.serveurMoveDrive + "id=" +copy.id + "&idn=" + father.id)
+      this._http.post(this.serveurMoveDrive + "id=" +copy.id + "&idn=" + father.id, null).subscribe();
   }
 
   public moveDropBox(copy:AFolder, father:AFolder){
-
+    if(father.getStringPath()!="") {
+      console.log("moveDrop1 : "+this.serveurMoveDropBox + "old=" + copy.getStringPath() +"&new="+ father.getStringPath()+"/"+copy.name)
+      this._http.post(this.serveurMoveDropBox + "old=" + copy.getStringPath() +"&new="+ father.getStringPath()+"/"+copy.name, null).subscribe();
+    }
+    else{
+      console.log("moveDrop2 : "+this.serveurMoveDropBox + "old=" + copy.getStringPath() + "&new="+copy.name)
+      this._http.post(this.serveurMoveDropBox + "old=" + copy.getStringPath() + "&new="+copy.name, null).subscribe();
+    }
   }
 
 /*
@@ -195,7 +204,6 @@ export class dataAPI {
     for(let typeFile of children.liste){
 
       if(typeFile.type == "file"){
-        console.log(typeFile);
           currentFolder.addFileGetRequest(typeFile.name, typeFile.size, typeFile.share, typeFile.download, typeFile.id);
           currentFolder.getLastChildren().drivers.push(driver);
         }

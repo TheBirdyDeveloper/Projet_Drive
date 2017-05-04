@@ -52,6 +52,7 @@ export class FolderComponent {
     if(AFolder.currentCopy != null) {
       if (father.isOnGoogle()&&AFolder.currentCopy.isOnGoogle()) {
         this.myApi.moveDrive(AFolder.currentCopy, father);
+        this.delete(AFolder.currentCopy, father);
       }
       if (father.isOnDropBox()&&AFolder.currentCopy.isOnDropBox()) {
         this.myApi.moveDropBox(AFolder.currentCopy, father);
@@ -64,13 +65,18 @@ export class FolderComponent {
     }
   }
 
-  getData(folder){
-    if (folder.load){
+  getData(folder) {
+    if (folder.load) {
       return;
     }
     folder.refresh();
 
-  this.myApi.getData(folder);
+    if (folder.isOnGoogle()){
+      this.myApi.getDataOnDrive(folder);
+  }
+    if (folder.isOnDropBox()){
+      this.myApi.getDataOnDropBox(folder);
+    }
   folder.load=true;
   }
 
