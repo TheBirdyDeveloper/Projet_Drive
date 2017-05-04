@@ -1,17 +1,11 @@
-
-
-
-
-
-
-
 <table width="100%">
 
   <tr>
     <th>Drive</th>
     <th>Nom</th>
     <th>Taille</th>
-    <th>Droits</th>
+    <th>Editable</th>
+    <th>Partage</th>
   </tr>
 
 
@@ -65,18 +59,6 @@
                     <button (click)="delete(current, folder)" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Supprimer</button>
                   </div>
 
-
-
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="input-group">
-                        <input [(ngModel)]="newNameFolder" type="text" class="form-control" placeholder="Nom du dossier">
-                        <span class="input-group-btn">
-                          <button (click)="addFolder(current, newNameFolder)" (click)="post(current, folder)" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter dossier</button>
-                        </span>
-                      </div><!-- /input-group -->
-                    </div><!-- /.col-lg-6 -->
-                   </div>
 
 
                   <div class="row">
@@ -141,9 +123,12 @@
       </td>
 
 
-      <td class="cellpadding"  width="10%">
+      <td class="cellpadding"  width="5%">
         {{current.rights}}
+      </td>
 
+      <td class="cellpadding"  width="5s%">
+        {{current.isShared}}
       </td>
     </tr>
 
