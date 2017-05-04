@@ -111,7 +111,7 @@ export class dataAPI {
   }
 
   changeNameDropBox(current:AFolder, name:string){
-    this._http.post(this.serveurRenameDropBox+"old="+current.getStringPath()+"&new=/"+current.getPathFather()+name, null).subscribe();
+    this._http.post(this.serveurRenameDropBox+"old="+current.getStringPath()+"&new="+current.getPathFather()+"/"+name, null).subscribe();
   }
 
   public getInfos(Information){
