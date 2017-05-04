@@ -24,7 +24,6 @@ export class FolderComponent {
   cut (current:AFolder, father:Folder){
     current.copy(current.type);
     current.delete(father);
-    //this.delete(current, father);
   }
 
   addFile(current:Folder, name:string){
@@ -52,13 +51,18 @@ export class FolderComponent {
     if(AFolder.currentCopy != null) {
       if (father.isOnGoogle()&&AFolder.currentCopy.isOnGoogle()) {
         this.myApi.moveDrive(AFolder.currentCopy, father);
-        this.delete(AFolder.currentCopy, father);
       }
-      if (father.isOnDropBox()&&AFolder.currentCopy.isOnDropBox()) {
+
+      else if (father.isOnDropBox()&&AFolder.currentCopy.isOnDropBox()) {
         this.myApi.moveDropBox(AFolder.currentCopy, father);
+      }
+
+      else{
+        console.error("Ce fichier n'appartient pas au Drive souhaité, collage impossible");
       }
       father.load = false;
       this.refresh(father);
+      AFolder.currentCopy = null;
     }
     else {
       console.error("No current copy");

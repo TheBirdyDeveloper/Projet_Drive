@@ -91,6 +91,7 @@ export class dataAPI {
     if(father.getStringPath()!="") {
       this._http.post(this.serveurPostDropBox + "path=" + father.getStringPath() +"/"+ current.name, null).subscribe();
     }
+
     else{
       this._http.post(this.serveurPostDropBox + "path=" + father.getStringPath() + current.name, null).subscribe();
     }
@@ -204,7 +205,7 @@ export class dataAPI {
     for(let typeFile of children.liste){
 
       if(typeFile.type == "file"){
-          currentFolder.addFileGetRequest(typeFile.name, typeFile.size, typeFile.share, typeFile.download, typeFile.id);
+          currentFolder.addFileGetRequest(typeFile.name, typeFile.size, typeFile.share, typeFile.download, typeFile.rights, typeFile.shared, typeFile.id);
           currentFolder.getLastChildren().drivers.push(driver);
         }
 
@@ -226,7 +227,7 @@ export class dataAPI {
           }
         }
         else {
-          currentFolder.addFolderGetRequest(typeFile.name, typeFile.size, typeFile.id);
+          currentFolder.addFolderGetRequest(typeFile.name, typeFile.size, typeFile.rights, typeFile.shared, typeFile.id);
           currentFolder.getLastChildren().drivers.push(driver);
         }
       }

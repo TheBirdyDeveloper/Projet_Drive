@@ -7,8 +7,8 @@ export class File extends AFolder{
   shareLink:string="";
   downloadLink:string="";
 
-  constructor(name, pathLastFolder, size=0, shareLink="", downloadLink="", id = null) {
-    super(name, pathLastFolder, size, id);
+  constructor(name, pathLastFolder, size=0, shareLink="", downloadLink="", rights = false, isShared = false, id = null) {
+    super(name, pathLastFolder, size, rights, isShared, id);
     this.children = null;
     this.type = "file";
     this.shareLink=shareLink;
