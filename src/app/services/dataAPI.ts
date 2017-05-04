@@ -228,4 +228,23 @@ export class dataAPI {
     }
   }
 
+  public uploadDrive(files, father:Folder){
+    if(father.getStringPath()!="") {
+      this._http.post(this.serveurPostDrive + "name=" + files[0].name + "&parent=" + father.id, files[0]).subscribe();
+    }
+  else {
+      this._http.post(this.serveurPostDrive + "name=" + files[0].name, files[0]).subscribe();
+    }
+
+  }
+
+  public uploadDropBox(files, father:Folder){
+    if(father.getStringPath()!="") {
+      this._http.post(this.serveurPostDropBox + "path=" + father.getStringPath() +"/"+ files[0].name, files[0]).subscribe();
+    }
+    else{
+      this._http.post(this.serveurPostDropBox + "path=" + father.getStringPath() + files[0].name, files[0]).subscribe();
+    }
+  }
+
 }

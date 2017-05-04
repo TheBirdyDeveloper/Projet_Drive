@@ -16,6 +16,9 @@
 <div *ngIf="mainFolder.rightClick">
 
   <!--Fonctions de Root-->
+  <label class="btn btn-default btn-file btn-primary">
+    Upload <input type="file" style="display: none;"(change)="upload($event, mainFolder)"/>
+  </label>
 
   <div >
     <i>

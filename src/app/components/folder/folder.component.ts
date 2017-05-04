@@ -79,10 +79,6 @@ export class FolderComponent {
     this.getData(folder);
   }
 
-  requestSharingLink(file) {
-    console.log("Share  :" + file.name);
-  }
-
   delete(child:AFolder, father){
 
     if(child.isOnGoogle()) {
@@ -112,6 +108,19 @@ export class FolderComponent {
 
   getShareLink(element, file:File){
     element.textContent = file.shareLink;
+  }
+
+  upload(event, current) {
+    var files = event.srcElement.files;
+    if (current.isOnGoogle()) {
+      this.myApi.uploadDrive(files, current);
+    }
+
+    if (current.isOnDropBox()) {
+      this.myApi.uploadDropBox(files, current);
+    }
+
+    this.refresh(current);
   }
 
 }

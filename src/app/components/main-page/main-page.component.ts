@@ -82,6 +82,14 @@ export class MainPageComponent  {
     folder.load=true;
   }
 
+  upload(event, current) {
+    var files = event.srcElement.files;
+      this.myApi.uploadDrive(files, current);
+
+      this.myApi.uploadDropBox(files, current);
+
+    this.refresh(current);
+  }
 
 
 }

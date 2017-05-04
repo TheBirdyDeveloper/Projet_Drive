@@ -2,9 +2,6 @@
 
 
 
-<label class="btn btn-default btn-file btn-primary">
-  Upload <input type="file" style="display: none;">
-</label>
 
 
 
@@ -44,6 +41,9 @@
           <ul>
             <div *ngIf="current.rightClick">
 
+<label class="btn btn-default btn-file btn-primary">
+  Upload <input type="file" style="display: none;"(change)="upload($event, current)"/>
+</label>
               <div >
                 <i>
 
