@@ -38,15 +38,18 @@ export class MainPageComponent  {
 
   paste(father:Folder){
     if(AFolder.currentCopy !== null) {
-      if (father.isOnGoogle()&&AFolder.currentCopy.isOnGoogle()) {
+      if (AFolder.currentCopy.isOnGoogle()) {
         this.myApi.moveDrive(AFolder.currentCopy, father);
       }
-      if (father.isOnDropBox()&&AFolder.currentCopy.isOnDropBox()) {
+      else if (AFolder.currentCopy.isOnDropBox()) {
         this.myApi.moveDropBox(AFolder.currentCopy, father);
       }
+      else{
+        return;
+      }
       father.load = false;
-      this.delete(AFolder.currentCopy, father);
       this.refresh(father);
+      AFolder.currentCopy = null;
     }
     else {
       console.error("No current copy");
