@@ -10,6 +10,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 "name",
 "type",
 "id",
+"size",
+"share",
+"download",
+"rights",
+"shared",
 "drive"
 })
 public class FileTranslator {
@@ -20,6 +25,16 @@ private String name;
 private String type;
 @JsonProperty("id")
 private String id;
+@JsonProperty("size")
+private String size;
+@JsonProperty("share")
+private String share;
+@JsonProperty("download")
+private String download;
+@JsonProperty("shared")
+private String shared;
+@JsonProperty("rights")
+private String rights;
 @JsonProperty("drive")
 private List<String> drive = null;
 
@@ -31,6 +46,24 @@ return name;
 @JsonProperty("name")
 public void setName(String name) {
 this.name = name;
+}
+
+
+@JsonProperty("shared")
+public String getShared() {
+	return shared;
+}
+@JsonProperty("shared")
+public void setShared(String shared) {
+	this.shared = shared;
+}
+@JsonProperty("rights")
+public String getRights() {
+	return rights;
+}
+@JsonProperty("rights")
+public void setRights(String rights) {
+	this.rights = rights;
 }
 
 @JsonProperty("type")
@@ -56,6 +89,31 @@ this.id = id;
 @JsonProperty("drive")
 public List<String> getDrive() {
 return drive;
+}
+
+@JsonProperty("size")
+public String getSize() {
+	return size;
+}
+@JsonProperty("size")
+public void setSize(String size) {
+	this.size = size;
+}
+@JsonProperty("share")
+public String getShare() {
+	return share;
+}
+@JsonProperty("share")
+public void setShare(String share) {
+	this.share = share;
+}
+@JsonProperty("download")
+public String getDownload() {
+	return download;
+}
+@JsonProperty("download")
+public void setDownload(String download) {
+	this.download = download;
 }
 
 @JsonProperty("drive")

@@ -1,0 +1,103 @@
+package com.unidrive.drive_service;
+
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+"name",
+"type",
+"id",
+"size",
+"share",
+"download",
+"rights",
+"shared",
+"drive"
+})
+public class FileTranslator {
+
+@JsonProperty("name")
+private String name;
+@JsonProperty("type")
+private String type;
+@JsonProperty("id")
+private String id;
+@JsonProperty("size")
+private String size;
+@JsonProperty("share")
+private String share;
+@JsonProperty("download")
+private String download;
+@JsonProperty("drive")
+private List<String> drive = null;
+
+@JsonProperty("name")
+public String getName() {
+return name;
+}
+
+@JsonProperty("name")
+public void setName(String name) {
+this.name = name;
+}
+
+@JsonProperty("type")
+public String getType() {
+return type;
+}
+
+@JsonProperty("type")
+public void setType(String type) {
+this.type = type;
+}
+
+@JsonProperty("id")
+public String getId() {
+return id;
+}
+
+@JsonProperty("id")
+public void setId(String id) {
+this.id = id;
+}
+
+@JsonProperty("drive")
+public List<String> getDrive() {
+return drive;
+}
+
+@JsonProperty("size")
+public String getSize() {
+	return size;
+}
+@JsonProperty("size")
+public void setSize(String size) {
+	this.size = size;
+}
+@JsonProperty("share")
+public String getShare() {
+	return share;
+}
+@JsonProperty("share")
+public void setShare(String share) {
+	this.share = share;
+}
+@JsonProperty("download")
+public String getDownload() {
+	return download;
+}
+@JsonProperty("download")
+public void setDownload(String download) {
+	this.download = download;
+}
+
+@JsonProperty("drive")
+public void setDrive(List<String> drive) {
+this.drive = drive;
+}
+
+
+}
